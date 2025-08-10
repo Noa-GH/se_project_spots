@@ -1,8 +1,8 @@
 @font-face {
-  font-family: "Poppins-Regular", Arial, Helvetica, sans-serif;
+  font-family: "Poppins-Regular";
   font-style: normal;
   /* Replace with the appropriate font weight */
   font-weight: 400;
   /* Replace with the correct file path */
-  src: url("./fonts/Poppins-Regular.ttf") format("truetype");
+  src: url("../vendor/fonts/Poppins-Regular.ttf") format("truetype");
 }
