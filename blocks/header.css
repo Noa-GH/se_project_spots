@@ -1,0 +1,15 @@
+.header {
+  background-color: #fcf5e5;
+}
+
+.header__logo {
+  display: grid;
+  width: 1280;
+  height: 210;
+  top: 80px;
+  left: 80px;
+  border-bottom-width: 1px;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  background-color: white;
+}

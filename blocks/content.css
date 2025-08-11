@@ -1,0 +1,10 @@
+.content {
+  display: grid;
+  width: 1280;
+  top: 310px;
+  height: 970;
+  border-bottom-width: 1px;
+  left: 80px;
+  gap: 20px;
+  padding-bottom: 40px;
+}
