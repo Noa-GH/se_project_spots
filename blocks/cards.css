@@ -1,10 +1,2 @@
 .cards {
-  display: grid;
-  width: 1280;
-  height: 970;
-  top: 310px;
-  left: 80px;
-  border-bottom-width: 1px;
-  padding-bottom: 40px;
-  gap: 20px;
 }

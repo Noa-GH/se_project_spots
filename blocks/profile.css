@@ -1,5 +1,8 @@
 .profile {
-  width: 505;
-  height: 190;
-  gap: 20px;
+  min-width: 1280px;
+}
+
+.profile__block {
+  /* min-width: 420px;
+  min-height: 190px; */
 }
