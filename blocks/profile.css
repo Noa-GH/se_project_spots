@@ -1,2 +1,10 @@
 .profile {
+  display: flex;
+  flex-direction: row;
 }
+
+/* .profile__edit-button {
+}
+.profile__newpost-button {
+  margin-left: auto;
+} */
