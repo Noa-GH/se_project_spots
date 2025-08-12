@@ -1,6 +1,5 @@
 .content {
   background-color: #fcf5e5;
-  /* min-width: 1280px;
-  min-height: 1180px;
-  margin: 210px 80px 0; */
+  display: flex;
+  flex-direction: row;
 }
