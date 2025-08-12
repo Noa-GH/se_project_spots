@@ -1,8 +1,18 @@
 .profile {
-  min-width: 1280px;
+  display: flex;
 }
 
-.profile__block {
-  /* min-width: 420px;
-  min-height: 190px; */
+.profile__avatar {
+}
+.profile__column {
+}
+.profile__name {
+}
+.profile__description {
+}
+.profile__edit-button {
+}
+.profile__newpost-button {
+}
+.profile__pen-edit {
 }

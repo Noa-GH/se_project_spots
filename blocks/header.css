@@ -2,10 +2,10 @@
   background-color: #fff;
   display: flex;
   justify-content: center;
+  padding: 10px 0;
 }
 
 .header__logo {
   width: 94px;
   height: 26px;
-  background-color: white;
 }
