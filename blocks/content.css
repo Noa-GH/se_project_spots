@@ -1,3 +1,4 @@
 .content {
-  background-color: #fcf5e5;
+  display: flex;
+  justify-content: center;
 }

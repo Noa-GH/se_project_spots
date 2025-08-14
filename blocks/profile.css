@@ -1,10 +1,21 @@
 .profile {
   display: flex;
   flex-direction: row;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.profile__column {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
 }
 
-/* .profile__edit-button {
+.profile__edit-btn {
+  width: 107px;
+  height: 16px;
+  background-color: transparent;
+  border: none;
 }
-.profile__newpost-button {
-  margin-left: auto;
-} */
+.profile__add-button {
+  background-color: transparent;
+}
