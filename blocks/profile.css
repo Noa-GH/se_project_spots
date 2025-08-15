@@ -1,27 +1,23 @@
 .profile {
   display: flex;
-}
-.profile__avatar {
-  padding: 0;
-  margin-right: 20px;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-bottom: 1px solid #212121;
 }
 .profile__column {
   display: flex;
   flex-direction: column;
 }
 .profile__add-btn {
-  display: flex;
   margin-left: auto;
-  margin-top: 128px;
-  max-width: 149px;
-  height: 52px;
-  padding: 18px 24px 18px 52px;
-  border-radius: 8px;
-  border: none;
-  gap: 8px;
-  background-color: #000;
+  max-width: 1280px;
 }
-.profile__add-btn img {
+.profile__avatar {
+  padding: 0;
+  margin-right: 20px;
+}
+
+/* .profile__add-btn img {
   background-color: tomato;
   padding: 0;
 }
@@ -44,4 +40,4 @@
   background-color: transparent;
   border: none;
   gap: 8px;
-}
+} */
