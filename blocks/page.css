@@ -2,9 +2,8 @@
   background-color: #fcf5e5;
   min-height: 100vh;
 }
-
 .page__section {
   margin: 0 auto;
   max-width: 1280px;
-  margin-top: 34px;
+  margin: 34px 80px 0 80px;
 }
