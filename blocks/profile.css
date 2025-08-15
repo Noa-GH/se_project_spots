@@ -1,20 +1,15 @@
 .profile {
   display: flex;
 }
-/* .profile__avatar {
+.profile__avatar {
   width: 190px;
   height: 190px;
-} */
+  margin-right: 20px;
+}
 .profile__column {
   max-width: 420px;
   height: 190px;
   margin-left: 20px;
-}
-.profile__name {
-  margin: 0;
-}
-.profile__description {
-  margin: 0;
 }
 .profile__edit-btn {
   width: 84px;
@@ -23,6 +18,7 @@
   background-color: transparent;
   border: none;
   padding: 0;
+  margin-top: auto;
 }
 .profile__add-button {
   border: none;
@@ -31,4 +27,11 @@
 }
 .edit__profile-accent {
   color: #ffff;
+}
+
+.profile__title {
+  margin-top: auto;
+}
+.profile__description {
+  margin: 0;
 }
