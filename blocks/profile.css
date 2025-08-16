@@ -2,6 +2,7 @@
   display: flex;
   max-width: 1280px;
   margin: 0 auto;
+  padding: 34px 0 20px;
   border-bottom: 1px solid #212121;
 }
 .profile__column {
@@ -11,25 +12,24 @@
 .profile__add-btn {
   margin-left: auto;
   max-width: 1280px;
+  padding: 0;
 }
 .profile__avatar {
-  padding: 0;
   margin-right: 20px;
 }
 
-/* .profile__add-btn img {
-  background-color: tomato;
+.profile__add-btn img {
   padding: 0;
+  margin: 0;
 }
-.edit__profile-accent {
+/* .edit__profile-accent {
   color: #fff;
-}
+} */
 .profile__name {
   padding: 0;
   margin: 0 0 12px;
 }
 .profile__description {
-  padding: 0;
   margin: 0;
 }
 .profile__edit-btn {
@@ -40,4 +40,4 @@
   background-color: transparent;
   border: none;
   gap: 8px;
-} */
+}
