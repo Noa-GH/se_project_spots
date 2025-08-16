@@ -1,15 +1,11 @@
 .footer {
   padding: 60px 0;
-  margin: auto;
+  margin-top: auto;
   display: flex;
   justify-content: center;
-  align-content: center;
-  width: 104px;
-  height: 16px;
-  font-family: "Poppins";
+  align-items: center;
+  font-family: "Poppins-regular";
   font-weight: 400;
-  font-style: "Regular";
   font-size: 16px;
-  line-height: 100%;
-  letter-spacing: 0%;
+  opacity: 70%;
 }
