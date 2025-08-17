@@ -1,5 +1,5 @@
 .card {
-  width: 413px;
+  width: 100%;
 }
 .card__image {
   height: 413px;
@@ -23,7 +23,7 @@
   background-color: transparent;
   opacity: 40%;
 }
-@media screen and (max-width: 627px) {
+@media screen and (min-width: 627px) {
   .card__image {
     height: 288px;
     width: 288px;
