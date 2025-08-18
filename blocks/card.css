@@ -1,5 +1,5 @@
 .card {
-  width: 100%;
+  width: 413px;
 }
 .card__image {
   height: 413px;
@@ -11,9 +11,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: "Poppins-regular";
-  font-weight: 500;
-  font-size: 20px;
 }
 .card__like-btn {
   background-image: url("../images/heart.svg");
@@ -22,10 +19,4 @@
   border: none;
   background-color: transparent;
   opacity: 40%;
-}
-@media screen and (min-width: 627px) {
-  .card__image {
-    height: 288px;
-    width: 288px;
-  }
 }
