@@ -1,6 +1,5 @@
 .profile {
   display: flex;
-
   max-width: 1280px;
   margin: 0 auto;
   padding: 34px 0 20px;
@@ -21,6 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: normal;
   padding: 0;
   margin-bottom: 20px;
   margin-top: auto;
@@ -28,10 +28,12 @@
   width: 149px;
   height: 52px;
   border-radius: 8px;
+  border: none;
   gap: 8px;
-  font-family: "Poppins-regular";
+  font-family: "Poppins-regular", Arial, sans-serif;
   font-weight: 500;
   font-size: 16px;
+  color: #fff;
   background-color: #212121;
   /* transition: ease-out 0.3s;
   position: relative;
@@ -39,9 +41,12 @@
 }
 
 .profile__add-btn:hover {
-  color: #212121cc;
   opacity: 80%;
   cursor: pointer;
+  font-weight: 500;
+  font-size: 16px;
+  color: #fff;
+  background-color: #212121;
 }
 
 /* This was an attempt at making the button have an effect once hovered over. */
@@ -79,7 +84,7 @@
 .profile__name {
   padding: 0;
   margin: 0 0 12px;
-  font-family: "Poppins-regular";
+  font-family: "Poppins-regular", Arial, sans-serif;
   font-weight: 500;
   font-size: 32px;
   letter-spacing: 0%;
@@ -109,7 +114,7 @@
   background-color: transparent;
   border: none;
   gap: 8px;
-  font-family: "Poppins-regular";
+  font-family: "Poppins-regular", Arial, sans-serif;
   font-weight: 500;
   font-style: Medium;
   font-size: 16px;

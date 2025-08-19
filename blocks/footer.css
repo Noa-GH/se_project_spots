@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins-regular";
+  font-family: "Poppins-regular", Arial, sans-serif;;
   font-weight: 400;
   font-size: 16px;
   opacity: 70%;
