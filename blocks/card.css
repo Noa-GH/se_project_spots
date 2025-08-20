@@ -5,7 +5,6 @@
 .card__image {
   height: 288px;
   width: 288px;
-  object-fit: cover;
   display: block;
   border-radius: 8px;
 }
@@ -22,11 +21,12 @@
   font-style: Medium;
   font-size: 20px;
   line-height: 100%;
-  max-width: 288px;
+  display: -webkit-box;
   overflow: hidden;
-  white-space: nowrap;
   text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
+  max-width: 288px;
 }
 .card__like-btn {
   background-image: url("../images/heart.svg");
@@ -41,16 +41,4 @@
   color: #212121cc;
   opacity: 80%;
   cursor: pointer;
-}
-@media screen and (max-width: 627px) {
-  .card {
-    width: 288px;
-  }
-  .card__image {
-    width: 288px;
-    height: 288px;
-  }
-  .card__title {
-    font-size: 16px;
-  }
 }

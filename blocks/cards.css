@@ -7,10 +7,11 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  max-width: 1280px;
   display: grid;
   justify-content: center;
   align-content: center;
-  grid-template-columns: repeat(3, 288px);
+  grid-template-columns: repeat(auto-fill, 288px);
   gap: 20px 20px;
   border-bottom: 1px solid #212121;
 }
