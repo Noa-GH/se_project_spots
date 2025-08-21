@@ -1,10 +1,10 @@
 .card {
-  width: 288px;
+  width: 413px;
 }
 
 .card__image {
-  height: 288px;
-  width: 288px;
+  height: 413px;
+  width: 413px;
   display: block;
   border-radius: 8px;
 }
@@ -23,12 +23,13 @@
   line-height: 100%;
   display: -webkit-box;
   overflow: hidden;
+  /* Having a hard time with getting the 4th card title to size correctly. Hope this is a good fix. */
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-wrap-mode: wrap;
   -webkit-line-clamp: 1;
-  flex-shrink: 9;
+  flex-shrink: 6;
   -webkit-box-orient: vertical;
-  max-width: 288px;
+  max-width: 100%;
 }
 
 .card__like-btn {
@@ -37,7 +38,7 @@
   height: 20px;
   border: none;
   background-color: transparent;
-  opacity: 40%;
+  opacity: 0.4;
 }
 
 .card__like-btn:hover {

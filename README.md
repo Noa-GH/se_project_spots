@@ -25,8 +25,21 @@ The way you'll do this at work is by exporting images directly from Figma — we
 
 Good luck and have fun!
 
-**Project**
+### Student's Input
+**Project Description**
+This project is a deployable project that will be interactive, responsive for multiple devices with varying screen sizes.
+The project was made to sharding content such as photos that will be attached to individual users and display their profile when navigating through the project.
+
+**BOTT** *(or Brief Of Technologies and Techniquies)*
+
+Tech used was HTML5 and CSS5 to create the layouts and grids.
+CSS5 helped with creating the responsive side of the project; allowing it to change it's design and sizing when going through different device screen size(s).
+
+*Images, and video documention will be added as this project begins to scale and come to completion.*
 
 **Github Deployment**
-This project
-https://github.com/Noa-GH/se_project_spots/deployments/github-pages
+This is the deployment link for the current release version of this project.
+
+### This project
+
+- [Link to delpoyment] (https://github.com/Noa-GH/se_project_spots/deployments/github-pages)
