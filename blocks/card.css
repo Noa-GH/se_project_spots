@@ -17,7 +17,7 @@
 }
 
 .card__title {
-  max-width: 100%;
+  width: 100%;
   margin: 0;
   font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
@@ -26,9 +26,8 @@
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   white-space: nowrap;
-  /* flex-shrink: 1; */
   -webkit-box-orient: vertical;
 
 }
