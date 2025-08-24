@@ -3,7 +3,7 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 34px 0 20px;
-  border-bottom: 1px solid #212121;
+  border-bottom: 1px solid #21212166;
 }
 
 .profile__column {
@@ -31,51 +31,17 @@
   border-radius: 8px;
   border: none;
   gap: 8px;
-  font-family: "Poppins-regular", Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: #fff;
   background-color: #212121;
-  /* transition: ease-out 0.3s;
-  position: relative;
-  z-index: 1; */
 }
 
 .profile__add-btn:hover {
   opacity: 0.8;
   cursor: pointer;
-  font-weight: 500;
-  font-size: 16px;
-  color: #fff;
-  background-color: #212121;
 }
-
-/* This was an attempt at making the button have an effect once hovered over. */
-
-/* .profile__add-btn:before {
-  transition: 0.5s all ease;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  right: 50%;
-  bottom: 0;
-  opacity: 0;
-  content: "";
-  background-color: #00ff00;
-} */
-
-/* .profile__add-btn:hover:before {
-  transition: 0.5s all ease;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  right: 50%;
-  bottom: 0;
-  opacity: 1;
-  content: "";
-  background-color: #00ff00;
-  z-index: -1;
-} */
 
 .edit__profile-accent {
   color: #fff;
@@ -85,7 +51,7 @@
 .profile__name {
   padding: 0;
   margin: 0 0 12px;
-  font-family: "Poppins-regular", Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
   font-size: 32px;
   letter-spacing: 0;
@@ -94,7 +60,7 @@
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  max-width: 288px;
+  max-width: 420px;
 }
 
 .profile__description {
@@ -104,27 +70,28 @@
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  max-width: 288px;
+  max-width: 420px;
   opacity: 0.7;
+  font-weight: 500;
 }
 
 .profile__edit-btn {
-  display: flex;
-  align-items: center;
   margin-top: auto;
   padding: 0;
+  display: flex;
+  align-items: center;
   background-color: transparent;
   border: none;
   gap: 8px;
-  font-family: "Poppins-regular", Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
-  font-style: Medium;
   font-size: 16px;
+  color: #212121;
+  opacity: 0.7;
 }
 
 .profile__edit-btn:hover {
-  color: #212121cc;
-  opacity: 0.8;
+  opacity: 1;
   cursor: pointer;
 }
 
@@ -136,26 +103,31 @@
     text-align: center;
     padding-top: 20px;
   }
+
   .profile__avatar {
     margin-right: 0;
     height: 80px;
     width: 80px;
     margin: 0 0 12px;
   }
+
   .profile__add-btn {
     margin: 0;
     width: 288px;
   }
+
   .profile__edit-btn {
     justify-content: center;
     margin: 0 0 20px;
   }
+
   .profile__name {
     font-size: 20px;
     line-height: 1;
     margin: 0 0 6px;
     max-width: 288px;
   }
+
   .profile__description {
     margin: 0 0 20px;
     max-width: 288px;

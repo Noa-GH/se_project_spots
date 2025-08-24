@@ -1,6 +1,8 @@
 .cards {
   margin: 0 auto;
   padding-top: 20px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #21212166;
 }
 
 .cards__list {
@@ -13,19 +15,13 @@
   justify-items: center;
   grid-template-columns: repeat(auto-fill, 413px);
   gap: 20px 20px;
-  border-bottom: 1px solid #212121;
 }
 
-/* @media (max-width: 768px) {
-  .cards__list {
-    grid-template-columns: 1fr;
-    display: grid;
-    justify-content: center;
-    gap: 16px;
-    padding: 0 20px;
-  }
-} */
 @media (max-width: 627px) {
+  .cards {
+    padding-bottom: 20px;
+  }
+
   .cards__list {
     grid-template-columns: repeat(auto-fill, 288px);
     display: grid;
