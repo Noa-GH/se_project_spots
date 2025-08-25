@@ -1,33 +1,30 @@
 .cards {
-  margin: 0 auto;
-  padding-top: 20px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid #21212166;
+  max-width: 100%;
 }
 
 .cards__list {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 20px 0;
+  margin: 0 auto;
   max-width: 1280px;
   display: grid;
   justify-content: center;
-  justify-items: center;
   grid-template-columns: repeat(auto-fill, 413px);
   gap: 20px 20px;
+  border-bottom: 1px solid #21212166;
 }
 
-@media (max-width: 627px) {
-  .cards {
+@media screen and (max-width: 627px) {
+  /* .cards {
     padding-bottom: 20px;
-  }
+  } */
 
   .cards__list {
     grid-template-columns: repeat(auto-fill, 288px);
     display: grid;
     justify-content: center;
-    gap: 16px;
-
-    padding: 0 20px;
+    gap: 20px;
+    padding-bottom: 20px;
+    max-width: 288px;
   }
 }
