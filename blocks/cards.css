@@ -1,14 +1,30 @@
 .cards {
-  margin: 0 auto;
-  padding-top: 20px;
+  max-width: 100%;
 }
+
 .cards__list {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 20px 0 40px;
+  margin: 0 auto;
+  max-width: 1280px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 413px);
   justify-content: center;
-  gap: 20px 20px;
-  border-bottom: 1px solid #212121;
+  grid-template-columns: repeat(auto-fill, 413px);
+  gap: 40px 20px;
+  border-bottom: 1px solid #21212166;
+}
+
+@media screen and (max-width: 627px) {
+  /* .cards {
+    padding-bottom: 20px;
+  } */
+
+  .cards__list {
+    grid-template-columns: repeat(auto-fill, 288px);
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 20px;
+    max-width: 288px;
+  }
 }
