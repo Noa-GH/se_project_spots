@@ -21,3 +21,5 @@ This is a deployment link to my GitHub Repo.
 It will have the lastest updated iteration of the project and this will be the way to access the project.
 
 - Project Link: (https://noa-gh.github.io/se_project_spots/)
+
+- Video about the project: (https://drive.google.com/file/d/1vxqtm5IdkOgH8jxR2oq3vXEMuUCqQUsh/view?usp=sharing)
