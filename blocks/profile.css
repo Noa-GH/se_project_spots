@@ -95,6 +95,8 @@
   cursor: pointer;
 }
 
+/* Media Qs are past this point! */
+
 @media screen and (max-width: 627px) {
   .profile {
     flex-direction: column;

@@ -1,0 +1,47 @@
+.modal {
+    visibility: hidden;
+    position: fixed;
+    max-width: 730px;
+    max-height: 408px;
+    background-color: #FFFF;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.modal_is-opened {
+    visibility: visible;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+.modal__container {}
+
+.modal__title {
+    margin: 0;
+    padding: 0;
+}
+
+.modal__lable {
+    margin: 0;
+    padding: 0;
+}
+
+.modal__input {
+    margin: 0;
+    padding: 0;
+}
+
+.modal__lable {
+    margin: 0;
+    padding: 0;
+}
+
+.modal__close-button {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+}
