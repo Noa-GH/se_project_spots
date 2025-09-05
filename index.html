@@ -158,6 +158,40 @@
           <button type="submit" class="modal__submit-button">Save</button>
         </div>
       </div>
+      <!-- This is the second 'modal' form -->
+      <div class="modal modal_is-opened">
+        <div class="modal__container">
+          <button type="button" class="modal__close-button">
+            <img
+              src="/images/Profile_closebutton.svg"
+              alt="X"
+              class="profile__close-button"
+            />
+          </button>
+          <h2 class="modal__title">Edit Profile</h2>
+          <form class="modal__form">
+            <lable for="profile-name-input" class="modal__lable"
+              >Name
+              <input
+                id="profile-name-input"
+                type="text"
+                class="modal__input"
+                placeholder="Type your name"
+              />
+            </lable>
+            <lable for="profile-description-input" class="modal__lable"
+              >Description
+              <input
+                id="profile-description-input"
+                type="text"
+                class="modal__input"
+                placeholder="Describe yourself"
+              />
+            </lable>
+          </form>
+          <button type="submit" class="modal__submit-button">Save</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
