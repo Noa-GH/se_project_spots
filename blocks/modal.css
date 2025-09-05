@@ -9,6 +9,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px;
 }
 
 .modal_is-opened {
@@ -92,3 +93,10 @@
     color: #FCF5E5;
     font-family: "Poppins", Arial, sans-serif;
 }
+
+@media screen and (max-width: 627px) {
+    .modal__submit-button {
+        max-width: none;
+    }
+}
+    
