@@ -124,6 +124,7 @@
         <p class="footer__copyright">2025 &copy; Spots</p>
       </footer>
       <!-- Use the below space to add new features. -->
+      <!-- ---------------------------------------- -->
       <div class="modal modal_is-opened">
         <div class="modal__container">
           <button type="button" class="modal__close-button">
@@ -134,15 +135,18 @@
             />
           </button>
           <h2 class="modal__title">Edit Profile</h2>
-          <form class="">
-            <lable for="profile-name-input" class="modal__lable">
+          <form class="modal__form">
+            <lable for="profile-name-input" class="modal__lable"
+              >Name
               <input
                 id="profile-name-input"
                 type="text"
                 class="modal__input"
                 placeholder="Type your name"
-              /> </lable
-            ><lable for="profile-description-input" class="modal__lable">
+              />
+            </lable>
+            <lable for="profile-description-input" class="modal__lable"
+              >Description
               <input
                 id="profile-description-input"
                 type="text"
@@ -151,7 +155,7 @@
               />
             </lable>
           </form>
-          <button type="button" class="profile__save-button">Save</button>
+          <button type="submit" class="modal__submit-button">Save</button>
         </div>
       </div>
     </div>
