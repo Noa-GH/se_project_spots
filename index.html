@@ -125,73 +125,103 @@
       </footer>
       <!-- Use the below space to add new features. -->
       <!-- This is the Edit Profile 'modal' form -->
-      <div class="modal">
+      <div id="editProfile-modal" class="modal">
         <div class="modal__container">
-          <button type="button" class="modal__close-button">
-            <img
-              src="images/Profile_closebutton.svg"
-              alt="X"
+          <button
+            type="button"
+            class="modal__close-button"
+            onclick="closeModal('editProfile-modal')"
+          >
+            <svg
               class="profile__close-button"
-            />
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 0 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"
+              />
+            </svg>
           </button>
           <h2 class="modal__title">Edit Profile</h2>
-          <form class="modal__form">
-            <lable for="profile-name-input" class="modal__lable"
-              >Name
+          <form class="modal__form" onsubmit="handleEditProfile(event)">
+            <label for="profile-name-input" class="modal__label">
+              Name
               <input
                 id="profile-name-input"
                 type="text"
                 class="modal__input"
                 placeholder="Type your name"
+                required
               />
-            </lable>
-            <lable for="profile-description-input" class="modal__lable"
-              >Description
+            </label>
+            <label for="profile-description-input" class="modal__label">
+              Description
               <input
                 id="profile-description-input"
                 type="text"
                 class="modal__input"
                 placeholder="Describe yourself"
               />
-            </lable>
+            </label>
+            <button type="submit" class="modal__submit-button">Save</button>
           </form>
-          <button type="submit" class="modal__submit-button">Save</button>
         </div>
       </div>
-      <!-- This is the New Post 'modal' form -->
-      <div class="modal modal_is-opened">
+
+      <!-- New Post Modal -->
+      <div id="newPost-modal" class="modal">
         <div class="modal__container">
-          <button type="button" class="modal__close-button">
-            <img
-              src="images/Profile_closebutton.svg"
-              alt="X"
+          <button
+            type="button"
+            class="modal__close-button"
+            onclick="closeModal('newPost-modal')"
+          >
+            <svg
               class="profile__close-button"
-            />
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
+              <path
+                d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 0 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"
+              />
+            </svg>
           </button>
           <h2 class="modal__title">New post</h2>
-          <form class="modal__form">
-            <lable for="card-image-input" class="modal__lable"
-              >Image link
+          <form class="modal__form" onsubmit="handleNewPost(event)">
+            <label for="card-image-input" class="modal__label">
+              Image link
               <input
                 id="card-image-input"
                 type="url"
                 class="modal__input"
-                placeholder="Paste a llink to the picture"
+                placeholder="Paste a link to the picture"
+                required
               />
-            </lable>
-            <lable for="card-caption-input" class="modal__lable"
-              >Caption
+            </label>
+            <label for="card-caption-input" class="modal__label">
+              Caption
               <input
                 id="card-caption-input"
                 type="text"
                 class="modal__input"
                 placeholder="Type your caption"
+                required
               />
-            </lable>
+            </label>
+            <button type="submit" class="modal__submit-button">Save</button>
           </form>
-          <button type="submit" class="modal__submit-button">Save</button>
         </div>
       </div>
     </div>
+    <!-- <script src="/script/script.js"></script> -->
+    <script src="script/script.js"></script>
+    <script>
+      // Add this right after your script tag to test if it loaded
+      console.log("HTML script tag executed");
+
+      // Test if your functions exist
+      console.log("openModal function exists:", typeof openModal);
+      console.log("closeModal function exists:", typeof closeModal);
+    </script>
   </body>
 </html>

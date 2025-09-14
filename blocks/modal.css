@@ -12,7 +12,7 @@
     padding: 10px;
 }
 
-.modal_is-opened {
+.modal__is-opened {
     visibility: visible;
 }
 
@@ -45,7 +45,7 @@
     line-height: 100%;
 }
 
-.modal__lable {
+.modal__label {
     margin: 0;
     padding: 0;
     display: flex;
@@ -60,7 +60,7 @@
     font-family: "Poppins", Arial, sans-serif;
 }
 
-.modal__lable {
+.modal__label {
     margin: 0;
     padding: 0;
     color: #212121B2;
@@ -99,4 +99,3 @@
         max-width: none;
     }
 }
-    
