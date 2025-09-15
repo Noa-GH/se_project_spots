@@ -125,12 +125,11 @@
       </footer>
       <!-- Use the below space to add new features. -->
       <!-- This is the Edit Profile 'modal' form -->
-      <div id="editProfile-modal" class="modal">
+      <div id="edit-profile-modal" class="modal">
         <div class="modal__container">
           <button
             type="button"
             class="modal__close-button"
-            onclick="closeModal('editProfile-modal')"
           >
             <svg
               class="profile__close-button"
@@ -143,7 +142,7 @@
             </svg>
           </button>
           <h2 class="modal__title">Edit Profile</h2>
-          <form class="modal__form" onsubmit="handleEditProfile(event)">
+          <form class="modal__form">
             <label for="profile-name-input" class="modal__label">
               Name
               <input
@@ -171,22 +170,11 @@
       <!-- New Post Modal -->
       <div id="newPost-modal" class="modal">
         <div class="modal__container">
-<<<<<<< HEAD
-          <button
-            type="button"
-            class="modal__close-button"
-            onclick="closeModal('newPost-modal')"
-          >
-            <svg
-=======
           <button type="button" class="modal__close-button">
             <img
               src="/images/Profile_closebutton.svg"
               alt="X"
->>>>>>> parent of aa58c97 (Fixed a loading error with the "X" svg image)
               class="profile__close-button"
-              viewBox="0 0 24 24"
-              fill="currentColor"
             >
               <path
                 d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 0 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"
@@ -194,7 +182,7 @@
             </svg>
           </button>
           <h2 class="modal__title">New post</h2>
-          <form class="modal__form" onsubmit="handleNewPost(event)">
+          <form class="modal__form">
             <label for="card-image-input" class="modal__label">
               Image link
               <input
@@ -220,6 +208,6 @@
         </div>
       </div>
     </div>
-    <script src="script/script.js"></script>
+    <script src="script/modalForm.js"></script>
   </body>
 </html>
