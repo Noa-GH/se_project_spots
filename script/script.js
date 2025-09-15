@@ -1,40 +1,14 @@
-// script.js (or whatever you named your JS file)
-function openModal(modalId) {
-  document.getElementById(modalId).style.display = "block";
-}
+// Getting Els for Edit Button
 
-function closeModal(modalId) {
-  document.getElementById(modalId).style.display = "none";
-  // Clear form inputs
-  const form = document.querySelector(`#${modalId} form`);
-  if (form) form.reset();
-}
+const EditModalButton = document.querySelector("profile__edit-btn")
+const EditModal = document.querySelector("#editprofile-modal");
+const EditModalCloseButton = EditModal.querySelector("modal__close-btn");
 
-function handleEditProfile(event) {
-  event.preventDefault();
-  const name = document.getElementById("profile-name-input").value;
-  const description = document.getElementById(
-    "profile-description-input"
-  ).value;
+// Getting Els for New Post Button
 
-  console.log("Profile updated:", { name, description });
-  alert("Profile updated successfully!");
-  closeModal("editProfile-modal");
-}
+// const AddModalButton = document.querySelector("");
 
-function handleNewPost(event) {
-  event.preventDefault();
-  const imageUrl = document.getElementById("card-image-input").value;
-  const caption = document.getElementById("card-caption-input").value;
+// const AddModal = document.querySelector("#newPost-modal");
 
-  console.log("New post created:", { imageUrl, caption });
-  alert("New post created successfully!");
-  closeModal("newPost-modal");
-}
+// const AddModalCloseButtton = document.querySelector("");
 
-// Close modal when clicking outside of it
-window.onclick = function (event) {
-  if (event.target.classList.contains("modal")) {
-    event.target.style.display = "none";
-  }
-};
