@@ -36,11 +36,14 @@
   font-size: 16px;
   color: #fff;
   background-color: #212121;
+  transition: all 0.2s ease-in-out;
 }
 
 .profile__add-btn:hover {
   opacity: 0.8;
   cursor: pointer;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 33, 33, 0.15);
 }
 
 .edit__profile-accent {
@@ -88,50 +91,11 @@
   font-size: 16px;
   color: #212121;
   opacity: 0.7;
+  transition: all 0.2s ease-in-out;
 }
 
 .profile__edit-btn:hover {
   opacity: 1;
   cursor: pointer;
-}
-
-/* Media Qs are past this point! */
-
-@media screen and (max-width: 627px) {
-  .profile {
-    flex-direction: column;
-    max-width: 288px;
-    align-items: center;
-    text-align: center;
-    padding-top: 20px;
-  }
-
-  .profile__avatar {
-    margin-right: 0;
-    height: 80px;
-    width: 80px;
-    margin: 0 0 12px;
-  }
-
-  .profile__add-btn {
-    margin: 0;
-    width: 288px;
-  }
-
-  .profile__edit-btn {
-    justify-content: center;
-    margin: 0 0 20px;
-  }
-
-  .profile__name {
-    font-size: 20px;
-    line-height: 1;
-    margin: 0 0 6px;
-    max-width: 288px;
-  }
-
-  .profile__description {
-    margin: 0 0 20px;
-    max-width: 288px;
-  }
+  transform: translateX(2px);
 }
