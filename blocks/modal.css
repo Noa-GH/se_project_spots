@@ -151,11 +151,11 @@
     z-index: 10;
 }
 
-.modal__close-button:hover {
+/* .modal__close-button:hover {
     opacity: 0.8;
     transform: rotate(90deg) scale(1.1);
     background-color: rgba(33, 33, 33, 0.05);
-}
+} */
 
 .modal__submit-button {
     max-width: 156px;
@@ -229,6 +229,7 @@
     }
 
     .modal__close-button {
-        position: 24px 20px 0 0; /*needs adjusted*/
+        position: 24px 20px 0 0;
+        /*needs adjusted*/
     }
 }
