@@ -76,7 +76,9 @@ function handleNewPostSubmit(e) {
 
   // Get form data
   const imageUrl = addModalInputImage.value;
+  console.log(imageUrl);
   const caption = addModalInputCaption.value;
+  console.log(caption);
 
   // Close modal after successful submit
   closeAddModal();
