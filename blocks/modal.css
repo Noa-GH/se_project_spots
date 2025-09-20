@@ -41,6 +41,7 @@
     max-width: 730px;
     width: 100%;
     border-radius: 8px;
+    box-sizing: border-box;
     background-color: #ffff;
     transform: scale(0.8) translateY(-30px);
     /* Start scaled down and moved up */
@@ -69,7 +70,6 @@
     padding: 0;
     font-family: "Poppins", Arial, sans-serif;
     font-weight: 500;
-    font-style: Medium;
     font-size: 32px;
     line-height: 100%;
     opacity: 0;
@@ -93,7 +93,6 @@
     color: #212121B2;
     font-family: "Poppins", Arial, sans-serif;
     font-weight: 500;
-    font-style: Medium;
     font-size: 16px;
     line-height: 110%;
     letter-spacing: 0%;
@@ -220,17 +219,16 @@
 }
 
 @media screen and (max-width: 627px) {
+
     .modal__submit-button {
         max-width: none;
     }
 
     .modal__container {
-        margin: 10px;
-        padding: 24px 20px;
+        padding: 22px 12px 12px;
     }
 
     .modal__close-button {
-        top: 24px;
-        right: 20px;
+        position: 24px 20px 0 0; /*needs adjusted*/
     }
 }

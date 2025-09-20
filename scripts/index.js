@@ -21,8 +21,6 @@ const addModalInputImage = addModal.querySelector("#card-image-input");
 const addModalInputCaption = addModal.querySelector("#card-caption-input");
 
 // Debug: Check if close buttons are found
-console.log("Edit modal close button:", editProfileModalCloseButton);
-console.log("Add modal close button:", addModalCloseButton);
 
 // Getting Els for text content
 const editProfileNameEl = document.querySelector(".profile__name");
@@ -34,22 +32,20 @@ const editProfileDescriptionEl = document.querySelector(
 function closeEditProfileModal() {
   editProfileModal.classList.add("modal_is-closing");
 
-  // Wait for animation to complete before removing the opened class
   setTimeout(() => {
     editProfileModal.classList.remove("modal_is-opened");
     editProfileModal.classList.remove("modal_is-closing");
-  }, 300); // Match this duration with your CSS transition
+  }, 300);
 }
 
 // Function to close add modal with smooth transition
 function closeAddModal() {
   addModal.classList.add("modal_is-closing");
 
-  // Wait for animation to complete before removing the opened class
   setTimeout(() => {
     addModal.classList.remove("modal_is-opened");
     addModal.classList.remove("modal_is-closing");
-  }, 300); // Match this duration with your CSS transition
+  }, 300);
 }
 
 editProfileModalButton.addEventListener("click", function () {
@@ -70,7 +66,6 @@ function handleEditProfileSubmit(e) {
   e.preventDefault();
   editProfileNameEl.textContent = editProfileModalInputName.value;
   editProfileDescriptionEl.textContent = editProfileModalInputDescription.value;
-  console.log("submitting");
 
   // Close modal after successful submit
   closeEditProfileModal();
@@ -81,14 +76,9 @@ function handleNewPostSubmit(e) {
 
   // Get form data
   const imageUrl = addModalInputImage.value;
+  console.log(imageUrl);
   const caption = addModalInputCaption.value;
-
-  // Log the form data to console
-  console.log("New Post Submission:", {
-    imageUrl: imageUrl,
-    caption: caption,
-    // timestamp: new Date().toISOString(),
-  });
+  console.log(caption);
 
   // Close modal after successful submit
   closeAddModal();
