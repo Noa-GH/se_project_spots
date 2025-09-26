@@ -1,3 +1,4 @@
+// Arry for the cards that were hard coded into HTML
 const initialCards = [
   {
     name: "Val Thorens",
@@ -25,7 +26,7 @@ const initialCards = [
   },
 ];
 
-// Getting Els for Edit Buttons
+// Getting elements for Edit Buttons
 const editProfileModalButton = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
 const editProfileModalCloseButton = editProfileModal.querySelector(
@@ -39,7 +40,7 @@ const editProfileModalInputDescription = editProfileModal.querySelector(
   "#profile-description-input"
 );
 
-// Getting Elements for New Post Modal
+// Getting elements for New Post Modal
 const addModalButton = document.querySelector(".profile__add-btn");
 const addModal = document.querySelector("#newPost-modal");
 const addModalCloseButton = addModal.querySelector(".modal__close-button");
@@ -67,7 +68,7 @@ function closeModal(modal) {
   }, 300);
 }
 
-// Generic function to setup modal with all common behaviors
+// Setup function for all behavoirs of modals/forms.
 function setupModal(
   modal,
   openButton,
@@ -137,16 +138,14 @@ setupModal(
   prepareEditProfileModal // This runs before opening the modal
 );
 
-// Close add modal when clicking outside of it
-addModal.addEventListener("click", function (e) {
-  // Only close if clicking on the modal backdrop (not the modal content)
-  if (e.target === addModal) {
-    closeAddModal();
-  }
-});
-
-editProfileModalForm.addEventListener("submit", handleEditProfileSubmit);
-addModalForm.addEventListener("submit", handleNewPostSubmit);
+// Initialize New Post Modal
+setupModal(
+  addModal,
+  addModalButton,
+  addModalCloseButton,
+  addModalForm,
+  handleNewPostSubmit
+);
 
 // ForEach loop for the cards method
 initialCards.forEach(function (item) {
