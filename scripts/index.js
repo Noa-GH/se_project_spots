@@ -26,6 +26,8 @@ const initialCards = [
   },
 ];
 
+const 
+
 // Getting elements for Edit Buttons
 const editProfileModalButton = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -66,6 +68,26 @@ function closeModal(modal) {
     modal.classList.remove("modal_is-opened");
     modal.classList.remove("modal_is-closing");
   }, 300);
+}
+
+// Function to create a card element - ai generated, will change later
+function getCardElement(cardData) {
+  const cardElement = document.createElement("div");
+  cardElement.classList.add("card");
+
+  const cardImage = document.createElement("img");
+  cardImage.classList.add("card__image");
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
+
+  const cardCaption = document.createElement("p");
+  cardCaption.classList.add("card__caption");
+  cardCaption.textContent = cardData.name;
+
+  cardElement.appendChild(cardImage);
+  cardElement.appendChild(cardCaption);
+
+  return cardElement;
 }
 
 // Setup function for all behavoirs of modals/forms.
