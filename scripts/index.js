@@ -68,30 +68,29 @@ function closeModal(modal) {
   }, 300);
 }
 
-// Function to create a card element
-const cardTemplate = document.querySelector("card-template");
+// Function to create a card element from template
+const cardList = document.querySelector(".cards__list");
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
 
-function getCardElement(data) {
-  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
+function getCardElement(cardData) {
+  const cardElement = cardTemplate.cloneNode(true);
+  // Select the image and title elements inside the card template
+  const cardTitle = cardElement.querySelector(".card__title");
+  cardTitle.textContent = cardData.name;
 
-//   const cardImage = document.createElement("img");
-//   cardImage.classList.add("card__image");
-//   cardImage.src = data.link;
-//   cardImage.alt = data.name;
+  const cardImage = cardElement.querySelector(".card__image");
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
 
-//   const cardCaption = document.createElement("p");
-//   cardCaption.classList.add("card__caption");
-//   cardCaption.textContent = data.name;
-
-//   cardElement.appendChild(cardImage);
-//   cardElement.appendChild(cardCaption);
-
-   return cardElement;
- };
+  return cardElement;
+}
 
 // ForEach loop for the cards method
-initialCards.forEach(function (data) {
-  console.log(getCardElement(data));
+initialCards.forEach(function (cardData) {
+  const cardElement = getCardElement(cardData);
+  cardList.append(cardElement);
 });
 
 // Setup function for all behavoirs of modals/forms.
