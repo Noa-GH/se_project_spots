@@ -70,9 +70,9 @@ function closeModal(modal) {
 
 // Function to create a card element
 const cardTemplate = document.querySelector("card-template");
+
 function getCardElement(data) {
   const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
-
 
 //   const cardImage = document.createElement("img");
 //   cardImage.classList.add("card__image");
