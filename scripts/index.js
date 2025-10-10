@@ -26,8 +26,6 @@ const initialCards = [
   },
 ];
 
-const 
-
 // Getting elements for Edit Buttons
 const editProfileModalButton = document.querySelector(".profile__edit-btn");
 const editProfileModal = document.querySelector("#edit-profile-modal");
@@ -70,25 +68,31 @@ function closeModal(modal) {
   }, 300);
 }
 
-// Function to create a card element - ai generated, will change later
-function getCardElement(cardData) {
-  const cardElement = document.createElement("div");
-  cardElement.classList.add("card");
+// Function to create a card element
+const cardTemplate = document.querySelector("card-template");
+function getCardElement(data) {
+  const cardElement = cardTemplate.content.querySelector(".card").cloneNode(true);
 
-  const cardImage = document.createElement("img");
-  cardImage.classList.add("card__image");
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
 
-  const cardCaption = document.createElement("p");
-  cardCaption.classList.add("card__caption");
-  cardCaption.textContent = cardData.name;
+//   const cardImage = document.createElement("img");
+//   cardImage.classList.add("card__image");
+//   cardImage.src = data.link;
+//   cardImage.alt = data.name;
 
-  cardElement.appendChild(cardImage);
-  cardElement.appendChild(cardCaption);
+//   const cardCaption = document.createElement("p");
+//   cardCaption.classList.add("card__caption");
+//   cardCaption.textContent = data.name;
 
-  return cardElement;
-}
+//   cardElement.appendChild(cardImage);
+//   cardElement.appendChild(cardCaption);
+
+   return cardElement;
+ };
+
+// ForEach loop for the cards method
+initialCards.forEach(function (data) {
+  console.log(getCardElement(data));
+});
 
 // Setup function for all behavoirs of modals/forms.
 function setupModal(
@@ -168,9 +172,3 @@ setupModal(
   addModalForm,
   handleNewPostSubmit
 );
-
-// ForEach loop for the cards method
-initialCards.forEach(function (item) {
-  console.log(item.name);
-  console.log(item.link);
-});
