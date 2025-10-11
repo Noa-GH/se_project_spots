@@ -93,17 +93,21 @@ function getCardElement(cardData) {
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
 
-  // Add like button functionality
   // const likeButton = cardElement.querySelector(".card__like-button");
-  // likeButton.addEventListener("click", () => {
-  //   likeButton.classList.toggle("card__like-button_active");
-  // });
+  // likeButton.createElement("button");
+  // likeButton.type = "button";
+  // likeButton.ariaLabel = "Like this card";
+  // likeButton.title = "Like this card";
+  // likeButton.classList.add("card__like-button");
 
-  // // Add delete button functionality
   // const deleteButton = cardElement.querySelector(".card__delete-button");
-  // deleteButton.addEventListener("click", () => {
-  //   cardElement.remove();
-  // });
+  // deleteButton.createElement("button");
+  // deleteButton.type = "button";
+  // deleteButton.ariaLabel = "Delete this card";
+  // deleteButton.title = "Delete this card";
+  // deleteButton.classList.add("card__delete-button");
+
+
 
   return cardElement;
 }
@@ -193,6 +197,18 @@ cardList.addEventListener("click", (e) => {
     openPreviewModal(imageSrc, title);
   }
 });
+
+// Add like button functionality
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  // Add delete button functionality
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
 // Form Submit Handlers
 function handleEditProfileSubmit(e) {
