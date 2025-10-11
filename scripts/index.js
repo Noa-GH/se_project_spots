@@ -93,6 +93,25 @@ initialCards.forEach(function (cardData) {
   cardList.append(cardElement);
 });
 
+// Initialize Edit Profile Modal
+setupModal(
+  editProfileModal,
+  editProfileModalButton,
+  editProfileModalCloseButton,
+  editProfileModalForm,
+  handleEditProfileSubmit,
+  prepareEditProfileModal // This runs before opening the modal
+);
+
+// Initialize New Post Modal
+setupModal(
+  addModal,
+  addModalButton,
+  addModalCloseButton,
+  addModalForm,
+  handleNewPostSubmit
+);
+
 // Setup function for all behavoirs of modals/forms.
 function setupModal(
   modal,
@@ -135,13 +154,22 @@ function handleEditProfileSubmit(e) {
   editProfileDescriptionEl.textContent = editProfileModalInputDescription.value;
 }
 
+// New Post submittion handler
 function handleNewPostSubmit(e) {
-  // Get form data
-  const imageUrl = addModalInputImage.value;
-  const caption = addModalInputCaption.value;
+  e.preventDefault();
 
-  console.log("Image URL:", imageUrl);
-  console.log("Caption:", caption);
+  // Create a new card and then prepend it to the list
+  const inputValues = {
+    name: addModalInputCaption.value,
+    link: addModalInputImage.value,
+  };
+
+  // Debug: check what values you're getting
+  console.log("Image URL:", inputValues.link);
+  console.log("Caption:", inputValues.name);
+
+  const cardElement = getCardElement(inputValues);
+  cardList.prepend(cardElement);
 
   // Reset form after submission
   addModalForm.reset();
@@ -152,22 +180,3 @@ function prepareEditProfileModal() {
   editProfileModalInputName.value = editProfileNameEl.textContent;
   editProfileModalInputDescription.value = editProfileDescriptionEl.textContent;
 }
-
-// Initialize Edit Profile Modal
-setupModal(
-  editProfileModal,
-  editProfileModalButton,
-  editProfileModalCloseButton,
-  editProfileModalForm,
-  handleEditProfileSubmit,
-  prepareEditProfileModal // This runs before opening the modal
-);
-
-// Initialize New Post Modal
-setupModal(
-  addModal,
-  addModalButton,
-  addModalCloseButton,
-  addModalForm,
-  handleNewPostSubmit
-);
