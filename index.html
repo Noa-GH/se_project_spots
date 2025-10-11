@@ -46,17 +46,15 @@
               <div class="card__content">
                 <h2 class="card__title"></h2>
                   <button class="card__like-btn"></button>
-                  <button class="card__delete-btn"></button>
+                  <!-- <button class="card__delete-btn"></button> -->
               </div>
               </li>
             </template>
-          </ul> 
-        <!-- insert cardSectionBu.html if needed -->
+          </ul>
       </main>
       <footer class="footer">
         <p class="footer__copyright">2025 &copy; Spots</p>
       </footer>
-      <!-- Use the below space to add new features. -->
       <!-- This is the Edit Profile 'modal' form -->
       <div id="edit-profile-modal" class="modal">
         <div class="modal__container">
@@ -92,7 +90,6 @@
           </form>
         </div>
       </div>
-
       <!-- New Post Modal -->
       <div id="newPost-modal" class="modal">
         <div class="modal__container">
@@ -115,13 +112,13 @@
                 required
               />
             </label>
-            <label for="card-caption-input" class="modal__label">
-              Caption
+            <label for="card-title-input" class="modal__label">
+              title
               <input
-                id="card-caption-input"
+                id="card-title-input"
                 type="text"
                 class="modal__input"
-                placeholder="Type your caption"
+                placeholder="Type your title"
                 required
               />
             </label>
@@ -129,9 +126,21 @@
           </form>
         </div>
       </div>
+      <!-- Image preview modal -->
+       <div id="preview-modal" class="modal modal_type_preview">
+  <div class="modal__container">
+    <button type="button" class="modal__close-button">
+      <img 
+        src="./images/Profile_closebutton.svg" 
+        alt="Close" 
+        class="profile__close-button" 
+      />
+    </button>
+    <img src="#" alt="Preview" class="modal__image" />
+    <p class="modal__caption"></p>
+  </div>
+</div>
     </div>
     <script src="scripts/index.js"></script>
-    <!-- basic template syntax -->
-  
   </body>
 </html>
