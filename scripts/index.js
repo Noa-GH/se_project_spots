@@ -76,6 +76,7 @@ const cardTemplate = document
 
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
+
   // Select the image and title elements inside the card template
   const cardTitle = cardElement.querySelector(".card__title");
   cardTitle.textContent = cardData.name;
@@ -83,6 +84,18 @@ function getCardElement(cardData) {
   const cardImage = cardElement.querySelector(".card__image");
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
+
+  // Add like button functionality
+  const likeButton = cardElement.querySelector(".card__like-button");
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  // Add delete button functionality
+  const deleteButton = cardElement.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   return cardElement;
 }
