@@ -18,7 +18,7 @@ const addModal = document.querySelector("#newPost-modal");
 const addModalCloseButton = addModal.querySelector(".modal__close-button");
 const addModalForm = addModal.querySelector(".modal__form");
 const addModalInputImage = addModal.querySelector("#card-image-input");
-const addModalInputTitle = addModal.querySelector("#card-caption-input");
+const addModalInputTitle = addModal.querySelector("#card-title-input");
 
 // Getting Elements for Profile Content
 const editProfileNameEl = document.querySelector(".profile__name");
@@ -93,21 +93,17 @@ function getCardElement(cardData) {
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
 
-  // const likeButton = cardElement.querySelector(".card__like-button");
-  // likeButton.createElement("button");
-  // likeButton.type = "button";
-  // likeButton.ariaLabel = "Like this card";
-  // likeButton.title = "Like this card";
-  // likeButton.classList.add("card__like-button");
+  // Add like button functionality
+  const likeButton = cardElement.querySelector(".card__like-btn");
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
 
-  // const deleteButton = cardElement.querySelector(".card__delete-button");
-  // deleteButton.createElement("button");
-  // deleteButton.type = "button";
-  // deleteButton.ariaLabel = "Delete this card";
-  // deleteButton.title = "Delete this card";
-  // deleteButton.classList.add("card__delete-button");
-
-
+  // Add delete button functionality
+  const deleteButton = cardElement.querySelector(".card__delete-btn");
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   return cardElement;
 }
@@ -198,18 +194,6 @@ cardList.addEventListener("click", (e) => {
   }
 });
 
-// Add like button functionality
-  const likeButton = cardElement.querySelector(".card__like-button");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-
-  // Add delete button functionality
-  const deleteButton = cardElement.querySelector(".card__delete-button");
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
 // Form Submit Handlers
 function handleEditProfileSubmit(e) {
   // Update profile data
@@ -231,6 +215,7 @@ function handleNewPostSubmit(e) {
   // console.log("Image URL:", inputValues.link);
   // console.log("Title:", inputValues.name);
 
+  // Create and prepend the card to the DOM and start of card list
   const cardElement = getCardElement(inputValues);
   cardList.prepend(cardElement);
 
