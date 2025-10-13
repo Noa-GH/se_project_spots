@@ -1,40 +1,41 @@
-// Getting elements for Edit Buttons
-const editProfileModalButton = document.querySelector(".profile__edit-btn");
-const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileModalCloseButton = editProfileModal.querySelector(
-  ".modal__close-button"
-);
-const editProfileModalForm = editProfileModal.querySelector(".modal__form");
-const editProfileModalInputName = editProfileModal.querySelector(
-  "#profile-name-input"
-);
-const editProfileModalInputDescription = editProfileModal.querySelector(
-  "#profile-description-input"
-);
+// ============================================
+// CONSTANTS & SELECTORS
+// ============================================
 
-// Getting elements for New Post Modal
-const addModalButton = document.querySelector(".profile__add-btn");
-const addModal = document.querySelector("#newPost-modal");
-const addModalCloseButton = addModal.querySelector(".modal__close-button");
-const addModalForm = addModal.querySelector(".modal__form");
-const addModalInputImage = addModal.querySelector("#card-image-input");
-const addModalInputTitle = addModal.querySelector("#card-title-input");
+const config = {
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-button",
+  closeButtonSelector: ".modal__close-button",
+  cardSelector: ".card",
+  cardTemplateSelector: "#card-template",
+  cardListSelector: ".cards__list",
+  cardImageSelector: ".card__image",
+  cardTitleSelector: ".card__title",
+  cardLikeButtonSelector: ".card__like-btn",
+  cardLikeButtonActiveClass: "card__like-btn_active",
+  cardDeleteButtonSelector: ".card__delete-btn",
+};
 
-// Getting Elements for Profile Content
-const editProfileNameEl = document.querySelector(".profile__name");
-const editProfileDescriptionEl = document.querySelector(
-  ".profile__description"
-);
+const selectors = {
+  editProfileModal: "#edit-profile-modal",
+  editProfileButton: ".profile__edit-btn",
+  editProfileNameInput: "#profile-name-input",
+  editProfileDescriptionInput: "#profile-description-input",
+  profileName: ".profile__name",
+  profileDescription: ".profile__description",
 
-// Getting preview modal elements
-const previewModal = document.querySelector("#preview-modal");
-const previewModalCloseButton = previewModal.querySelector(
-  ".modal__close-button"
-);
-const previewModalImage = previewModal.querySelector(".modal__image");
-const previewModalCaption = previewModal.querySelector(".modal__caption");
+  newPostModal: "#newPost-modal",
+  newPostButton: ".profile__add-btn",
+  newPostImageInput: "#card-image-input",
+  newPostTitleInput: "#card-title-input",
 
-// Arry for the cards that were hard coded into HTML
+  previewModal: "#preview-modal",
+  previewImage: ".modal__image",
+  previewCaption: ".modal__caption",
+};
+
+// Initial card data
 const initialCards = [
   {
     name: "Val Thorens",
@@ -62,7 +63,60 @@ const initialCards = [
   },
 ];
 
-// Reusable Modal Functions
+// ============================================
+// DOM ELEMENTS
+// ============================================
+
+// Profile elements
+const profileName = document.querySelector(selectors.profileName);
+const profileDescription = document.querySelector(selectors.profileDescription);
+
+// Edit Profile Modal
+const editProfileModal = document.querySelector(selectors.editProfileModal);
+const editProfileButton = document.querySelector(selectors.editProfileButton);
+const editProfileForm = editProfileModal.querySelector(config.formSelector);
+const editProfileNameInput = editProfileModal.querySelector(
+  selectors.editProfileNameInput
+);
+const editProfileDescriptionInput = editProfileModal.querySelector(
+  selectors.editProfileDescriptionInput
+);
+
+// New Post Modal
+const newPostModal = document.querySelector(selectors.newPostModal);
+const newPostButton = document.querySelector(selectors.newPostButton);
+const newPostForm = newPostModal.querySelector(config.formSelector);
+const newPostImageInput = newPostModal.querySelector(
+  selectors.newPostImageInput
+);
+const newPostTitleInput = newPostModal.querySelector(
+  selectors.newPostTitleInput
+);
+
+// Preview Modal
+const previewModal = document.querySelector(selectors.previewModal);
+const previewImage = previewModal.querySelector(selectors.previewImage);
+const previewCaption = previewModal.querySelector(selectors.previewCaption);
+
+// Card elements
+const cardList = document.querySelector(config.cardListSelector);
+const cardTemplate = document
+  .querySelector(config.cardTemplateSelector)
+  .content.querySelector(config.cardSelector);
+
+// ============================================
+// MODAL FUNCTIONS
+// ============================================
+
+function handleEscapeKey(evt) {
+  if (evt.key === "Escape") {
+    const openModal = document.querySelector(".modal_is-opened");
+    if (openModal) {
+      closeModal(openModal);
+    }
+  }
+}
+
 function openModal(modal) {
   modal.classList.add("modal_is-opened");
 }
@@ -76,155 +130,152 @@ function closeModal(modal) {
   }, 300);
 }
 
-// Function to create a card element from template
-const cardList = document.querySelector(".cards__list");
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
+function setupModalListeners(modal, openButton) {
+  const closeButton = modal.querySelector(config.closeButtonSelector);
 
-function getCardElement(cardData) {
+  // Open modal (only if openButton exists)
+  if (openButton) {
+    openButton.addEventListener("click", () => {
+      openModal(modal);
+    });
+  }
+
+  // Close via close button (handle clicks on button or image inside)
+  if (closeButton) {
+    closeButton.addEventListener("click", () => {
+      closeModal(modal);
+    });
+  }
+
+  // Close when clicking outside (on overlay)
+  modal.addEventListener("mousedown", (evt) => {
+    if (evt.target === modal) {
+      closeModal(modal);
+    }
+  });
+}
+
+// ============================================
+// CARD FUNCTIONS
+// ============================================
+
+function createCard(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
 
-  // Select card image and title elements
-  const cardTitle = cardElement.querySelector(".card__title");
-  cardTitle.textContent = cardData.name;
+  const cardImage = cardElement.querySelector(config.cardImageSelector);
+  const cardTitle = cardElement.querySelector(config.cardTitleSelector);
 
-  const cardImage = cardElement.querySelector(".card__image");
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
-
-  // Add like button functionality
-  const likeButton = cardElement.querySelector(".card__like-btn");
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-btn_active");
-  });
-
-  // Add delete button functionality
-  const deleteButton = cardElement.querySelector(".card__delete-btn");
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+  cardTitle.textContent = cardData.name;
 
   return cardElement;
 }
 
-// ForEach loop for the cards method
-initialCards.forEach(function (cardData) {
-  const cardElement = getCardElement(cardData);
-  cardList.append(cardElement);
-});
-
-// Initialize Edit Profile Modal
-setupModal(
-  editProfileModal,
-  editProfileModalButton,
-  editProfileModalCloseButton,
-  editProfileModalForm,
-  handleEditProfileSubmit,
-  prepareEditProfileModal // This runs before opening the modal
-);
-
-// Initialize New Post Modal
-setupModal(
-  addModal,
-  addModalButton,
-  addModalCloseButton,
-  addModalForm,
-  handleNewPostSubmit
-);
-
-// Setup function for all behavoirs of modals/forms.
-function setupModal(
-  modal,
-  openButton,
-  closeButton,
-  form = null,
-  submitHandler = null,
-  onOpen = null
-) {
-  // Open modal
-  openButton.addEventListener("click", () => {
-    if (onOpen) onOpen(); // Run any pre-open logic
-    openModal(modal);
-  });
-
-  // Close modal via close button
-  closeButton.addEventListener("click", () => closeModal(modal));
-
-  // Close modal when clicking outside
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      closeModal(modal);
-    }
-  });
-
-  // Setup form if provided
-  if (form && submitHandler) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      submitHandler(e);
-      closeModal(modal);
-    });
+function renderCard(cardData, method = "append") {
+  const cardElement = createCard(cardData);
+  if (method === "prepend") {
+    cardList.prepend(cardElement);
+  } else {
+    cardList.append(cardElement);
   }
 }
 
+function handleCardClick(evt) {
+  const target = evt.target;
+
+  // Handle like button
+  if (target.classList.contains("card__like-btn")) {
+    target.classList.toggle("card__like-btn_active");
+    return; // Stop propagation
+  }
+
+  // Handle delete button
+  if (target.classList.contains("card__delete-btn")) {
+    const card = target.closest(".card");
+    card.remove();
+    return; // Stop propagation
+  }
+
+  // Handle image preview
+  if (target.classList.contains("card__image")) {
+    const card = target.closest(".card");
+    const title = card.querySelector(".card__title").textContent;
+    openPreviewModal(target.src, title);
+  }
+}
+
+// ============================================
+// PREVIEW MODAL FUNCTIONS
+// ============================================
+
 function openPreviewModal(imageSrc, title) {
-  previewModalImage.src = imageSrc;
-  previewModalImage.alt = title;
-  previewModalCaption.textContent = title;
+  previewImage.src = imageSrc;
+  previewImage.alt = title;
+  previewCaption.textContent = title;
   openModal(previewModal);
 }
 
-previewModalCloseButton.addEventListener("click", () =>
-  closeModal(previewModal)
-);
+// ============================================
+// FORM HANDLERS
+// ============================================
 
-previewModal.addEventListener("click", (e) => {
-  if (e.target === previewModal) {
-    closeModal(previewModal);
-  }
-});
+function handleEditProfileSubmit(evt) {
+  evt.preventDefault();
 
-cardList.addEventListener("click", (e) => {
-  if (e.target.classList.contains("card__image")) {
-    const card = e.target.closest(".card");
-    const title = card.querySelector(".card__title").textContent;
-    const imageSrc = e.target.src;
-    openPreviewModal(imageSrc, title);
-  }
-});
+  profileName.textContent = editProfileNameInput.value;
+  profileDescription.textContent = editProfileDescriptionInput.value;
 
-// Form Submit Handlers
-function handleEditProfileSubmit(e) {
-  // Update profile data
-  editProfileNameEl.textContent = editProfileModalInputName.value;
-  editProfileDescriptionEl.textContent = editProfileModalInputDescription.value;
+  closeModal(editProfileModal);
 }
 
-// New Post submission handler
-function handleNewPostSubmit(e) {
-  e.preventDefault();
+function handleNewPostSubmit(evt) {
+  evt.preventDefault();
 
-  // Create a new card and then prepend it to the list
-  const inputValues = {
-    name: addModalInputTitle.value,
-    link: addModalInputImage.value,
+  const cardData = {
+    name: newPostTitleInput.value,
+    link: newPostImageInput.value,
   };
 
-  // // Debug: check what values you're getting
-  // console.log("Image URL:", inputValues.link);
-  // console.log("Title:", inputValues.name);
+  renderCard(cardData, "prepend");
 
-  // Create and prepend the card to the DOM and start of card list
-  const cardElement = getCardElement(inputValues);
-  cardList.prepend(cardElement);
-
-  // Reset form after submission
-  addModalForm.reset();
+  evt.target.reset();
+  closeModal(newPostModal);
 }
 
-// Pre-open function for edit profile modal
 function prepareEditProfileModal() {
-  editProfileModalInputName.value = editProfileNameEl.textContent;
-  editProfileModalInputDescription.value = editProfileDescriptionEl.textContent;
+  editProfileNameInput.value = profileName.textContent;
+  editProfileDescriptionInput.value = profileDescription.textContent;
 }
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+function init() {
+  // Render initial cards
+  initialCards.forEach((cardData) => {
+    renderCard(cardData);
+  });
+
+  // Setup card event delegation
+  cardList.addEventListener("click", handleCardClick);
+
+  // Setup ESC key listener (global, always active)
+  document.addEventListener("keydown", handleEscapeKey);
+
+  // Setup Edit Profile Modal
+  setupModalListeners(editProfileModal, editProfileButton);
+  editProfileButton.addEventListener("click", prepareEditProfileModal);
+  editProfileForm.addEventListener("submit", handleEditProfileSubmit);
+
+  // Setup New Post Modal
+  setupModalListeners(newPostModal, newPostButton);
+  newPostForm.addEventListener("submit", handleNewPostSubmit);
+
+  // Setup Preview Modal
+  setupModalListeners(previewModal, null);
+}
+
+// Start the application
+init();

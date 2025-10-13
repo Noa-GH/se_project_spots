@@ -1,9 +1,14 @@
+.card {
+  position: relative; /* This is critical for absolute positioning of delete button */
+}
+
 .card__content {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 12px;
 }
+
 .card__title {
   max-width: 320px;
   margin: 0;
@@ -14,65 +19,76 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .card__image {
   height: 413px;
   width: 413px;
   display: block;
   border-radius: 8px;
-}
-.card__image {
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
+
 .card__image:hover {
   transform: scale(1.02);
   opacity: 0.9;
 }
-.card__like-btn_active {
-  background-image: url("/images/Heart_liked.svg"); /* or your active icon */
-  opacity: 1;
-}
+
 .card__like-btn {
   background-image: url("/images/Heart_like-button.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   width: 23px;
   height: 20px;
   border: none;
-  background-color: transparent;
   opacity: 0.4;
   transition: opacity 0.3s ease;
-}
-.card__like-btn:hover {
-  opacity: 0.5;
   cursor: pointer;
 }
+
+.card__like-btn:hover {
+  opacity: 0.5;
+}
+
+.card__like-btn_active {
+  background-image: url("/images/Heart_liked.svg");
+  opacity: 1;
+}
+
 .card__delete-btn {
   position: absolute;
   top: 10px;
   right: 10px;
   width: 24px;
   height: 24px;
-  background-color: white;
-  background-image: url("/images/Trashcan_delete.svg"); /* Add your delete icon */
+  background-color: transparent;
+  background-image: url("/images/Trashcan_delete.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
   transition: opacity 0.3s ease;
+  opacity: 1;
 }
+
 .card__delete-btn:hover {
-  background-image: url("/images/Trashcan_delete-hover.svg"); /* Add your hover delete icon */
+  background-image: url("/images/Trashcan_delete-hover.svg");
   opacity: 0.6;
 }
+
 @media screen and (max-width: 627px) {
   .card {
     max-width: 288px;
   }
+
   .card__image {
     width: 288px;
     height: 288px;
   }
+
   .card__title {
     max-width: 250px;
     font-size: 16px;

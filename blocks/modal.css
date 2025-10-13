@@ -76,8 +76,8 @@
 }
 .modal__caption {
   position: absolute;
-  top: 750px;
-  left: 497px;
+  bottom: -30px;
+  left: 0;
   color: white;
   font-family: "Poppins", Arial, sans-serif;
   background-color: #212121;
