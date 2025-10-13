@@ -96,7 +96,7 @@ function getCardElement(cardData) {
   // Add like button functionality
   const likeButton = cardElement.querySelector(".card__like-btn");
   likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
+    likeButton.classList.toggle("card__like-btn_active");
   });
 
   // Add delete button functionality
