@@ -16,6 +16,7 @@
   background-color: rgba(0, 0, 0, 0);
   opacity: 0;
   transition: all 0.3s ease-in-out;
+  z-index: 100;
 }
 
 .modal__container {
@@ -61,17 +62,17 @@
    ========================================================================== */
 
 .modal_type_preview .modal__container {
-  position: absolute;
-  background: transparent;
-  border: none;
-  padding: 0;
   background: transparent;
   padding: 0;
   max-width: 75vw;
   max-height: 75vh;
   box-shadow: none;
+  gap: 0;
   transform: scale(0.9);
   transition: transform 0.3s ease-in-out;
+  display: grid;
+  place-items: center;
+  position: relative;
 }
 
 .modal_is-opened.modal_type_preview .modal__container {
@@ -84,13 +85,26 @@
 
 .modal_type_preview .modal__close-button {
   position: absolute;
-  opacity: 0.6;
+  top: 0;
+  right: -43px;
+  opacity: 0.4;
   background-color: transparent;
-  background-image: url("/images/Close_icon-default_white.svg");
+  background-image: url("/images/Close_White.svg");
+  z-index: 101;
 }
 
 .modal_type_preview .modal__close-button:hover {
   opacity: 1;
+  background-image: url("/images/Close_White.svg");
+}
+
+/* ==========================================================================
+   MODAL IMAGE WRAPPER
+   ========================================================================== */
+
+.modal__image-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
 /* ==========================================================================
@@ -99,11 +113,11 @@
 
 .modal__image {
   display: block;
-  max-width: 100%;
+  max-width: 75vw;
   max-height: 75vh;
   width: auto;
   height: auto;
-  object-fit: conatain;
+  object-fit: contain;
   border-radius: 0;
   opacity: 0;
   transform: scale(0.95);
@@ -121,7 +135,8 @@
 
 .modal__caption {
   position: absolute;
-  bottom: -33px;
+  bottom: -41px;
+  left: 0;
   color: white;
   font-family: "Poppins", Arial, sans-serif;
   background-color: #212121;
@@ -211,7 +226,7 @@
   font-family: "Poppins", Arial, sans-serif;
   font-weight: 500;
   font-size: 16px;
-  line-height: 110%;
+  line-height: 150%;
   letter-spacing: 0%;
   opacity: 0;
   transform: translateY(-10px);
@@ -263,16 +278,24 @@
   padding: 0;
   width: 40px;
   height: 40px;
-  opacity: 0.4;
   border: none;
   background: none;
+  background-image: url("/images/Close_Default.svg");
+  opacity: 0.4;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   position: absolute;
   top: 32px;
   right: 50px;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
   z-index: 10;
+}
+
+.modal__close-button:hover {
+  opacity: 1;
+  background-image: url("/images/Close_Hover.svg");
 }
 
 /* ==========================================================================
@@ -321,8 +344,8 @@
   }
 
   .modal__close-button {
-    top: 40px;
-    right: 40px;
+    top: 12px;
+    right: 12px;
   }
 
   .modal__submit-button {
@@ -341,12 +364,28 @@
   }
 
   .modal_type_preview .modal__close-button {
-    top: -35px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    background-image: url("/images/Close_White.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+    top: -40px;
     right: 0;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    z-index: 10;
+  }
+
+  .modal__close-button:hover {
+    opacity: 0.4;
   }
 
   .modal__caption {
-    font-size: 10px;
-    bottom: -33px;
+    font-size: 12px;
+    bottom: -38px;
   }
 }
