@@ -62,17 +62,17 @@
    ========================================================================== */
 
 .modal_type_preview .modal__container {
-  background: transparent;
+  display: grid;
+  position: relative;
+  place-items: center;
+  gap: 0;
   padding: 0;
   max-width: 75vw;
   max-height: 75vh;
   box-shadow: none;
-  gap: 0;
+  background: transparent;
   transform: scale(0.9);
   transition: transform 0.3s ease-in-out;
-  display: grid;
-  place-items: center;
-  position: relative;
 }
 
 .modal_is-opened.modal_type_preview .modal__container {
@@ -90,6 +90,7 @@
   opacity: 0.4;
   background-color: transparent;
   background-image: url("/images/Close_White.svg");
+  cursor: pointer;
   z-index: 101;
 }
 
