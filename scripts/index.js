@@ -159,7 +159,7 @@ function setupModalListeners(modal, openButton) {
 // CARD FUNCTIONS
 // ============================================
 
-function createCard(cardData) {
+function getCardElelment(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardImage = cardElement.querySelector(config.cardImageSelector);
@@ -173,7 +173,7 @@ function createCard(cardData) {
 }
 
 function renderCard(cardData, method = "append") {
-  const cardElement = createCard(cardData);
+  const cardElement = getCardElelment(cardData);
   if (method === "prepend") {
     cardList.prepend(cardElement);
   } else {

@@ -35,7 +35,7 @@
 }
 
 .card__like-btn {
-  background-image: url("/images/Heart_like-button.svg");
+  background-image: url("../images/Heart_like-button.svg");
   background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
@@ -53,7 +53,7 @@
 }
 
 .card__like-btn_active {
-  background-image: url("/images/Heart_liked.svg");
+  background-image: url("../images/Heart_liked.svg");
   opacity: 0.5;
 }
 
@@ -64,7 +64,7 @@
   width: 32px;
   height: 32px;
   background-color: transparent;
-  background-image: url("/images/Trashcan_delete.svg");
+  background-image: url("../images/Trashcan_delete.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -75,7 +75,7 @@
 }
 
 .card__delete-btn:hover {
-  background-image: url("/images/Trashcan_delete-hover.svg");
+  background-image: url("../images/Trashcan_delete-hover.svg");
   opacity: 1;
 }
 

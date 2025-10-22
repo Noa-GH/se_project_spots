@@ -89,14 +89,14 @@
   right: -43px;
   opacity: 0.4;
   background-color: transparent;
-  background-image: url("/images/Close_White.svg");
+  background-image: url("../images/Close_White.svg");
   cursor: pointer;
   z-index: 101;
 }
 
 .modal_type_preview .modal__close-button:hover {
   opacity: 1;
-  background-image: url("/images/Close_White.svg");
+  background-image: url("../images/Close_White.svg");
 }
 
 /* ==========================================================================
@@ -281,7 +281,7 @@
   height: 40px;
   border: none;
   background: none;
-  background-image: url("/images/Close_Default.svg");
+  background-image: url("../images/Close_Default.svg");
   opacity: 0.4;
   background-repeat: no-repeat;
   background-position: center;
@@ -296,7 +296,7 @@
 
 .modal__close-button:hover {
   opacity: 1;
-  background-image: url("/images/Close_Hover.svg");
+  background-image: url("../images/Close_Hover.svg");
 }
 
 /* ==========================================================================
@@ -369,7 +369,7 @@
     height: 40px;
     border: none;
     background: none;
-    background-image: url("/images/Close_White.svg");
+    background-image: url("../images/Close_White.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
