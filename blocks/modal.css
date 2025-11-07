@@ -336,6 +336,42 @@
 }
 
 /* ==========================================================================
+   VALIDATION STATES
+   ==========================================================================*/
+
+.modal__input_type_error {
+  border-color: #ff0000;
+  border-width: 2px;
+}
+
+.modal__error {
+  display: block;
+  color: #ff0000;
+  font-size: 12px;
+  line-height: 15px;
+  margin-top: 5px;
+  min-height: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal__error_visible {
+  opacity: 1;
+}
+
+.modal__submit-button_disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.modal__submit-button_disabled:hover {
+  background: #212121;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ==========================================================================
    MEDIA QUERIES
    ========================================================================== */
 
