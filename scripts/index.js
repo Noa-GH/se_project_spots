@@ -159,7 +159,7 @@ function setupModalListeners(modal, openButton) {
 // CARD FUNCTIONS
 // ============================================
 
-function getCardElelment(cardData) {
+function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardImage = cardElement.querySelector(config.cardImageSelector);
@@ -173,7 +173,7 @@ function getCardElelment(cardData) {
 }
 
 function renderCard(cardData, method = "append") {
-  const cardElement = getCardElelment(cardData);
+  const cardElement = getCardElement(cardData);
   if (method === "prepend") {
     cardList.prepend(cardElement);
   } else {
@@ -243,9 +243,28 @@ function handleNewPostSubmit(evt) {
   closeModal(newPostModal);
 }
 
+function resetFormValidation(form) {
+  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+  const submitButton = form.querySelector(config.submitButtonSelector);
+
+  inputs.forEach((input) => {
+    const errorElement = form.querySelector(`#${input.id}-error`);
+    input.classList.remove("modal__input_type_error");
+    if (errorElement) {
+      errorElement.classList.remove("modal__error_visible");
+      errorElement.textContent = "";
+    }
+  });
+
+  // Reset button state
+  submitButton.classList.remove("modal__submit-button_disabled");
+  submitButton.disabled = false;
+}
+
 function prepareEditProfileModal() {
   editProfileNameInput.value = profileName.textContent;
   editProfileDescriptionInput.value = profileDescription.textContent;
+  resetFormValidation(editProfileForm);
 }
 
 // ============================================

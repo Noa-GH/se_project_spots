@@ -7,8 +7,6 @@ const validationConfig = {
   errorClass: "modal__error_visible", // Shows error messages
 };
 
-enableValidation(validationConfig);
-
 // Enable validation with matching form selector
 const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
@@ -20,50 +18,52 @@ const enableValidation = (config) => {
   });
 };
 
-
 // Creating eventlisteners for inputs
 const setEventListeners = (form, config) => {
   const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+  const submitButton = form.querySelector(config.submitButtonSelector);
+
+  // set initial button state
+  toggleButtonState(inputs, submitButton, config);
+
   inputs.forEach((input) => {
-    input.addEventListener("input", (e)) => {
-      e.preventDefault();
-    };
+    input.addEventListener("input", () => {
+      checkInputValidity(input, form, config);
+      toggleButtonState(inputs, submitButton, config);
+    });
   });
 };
 
 // Card form reset
-const cardForm = document.querySelector(".modal__form_type_card");
-cardForm.addEventListener("reset", () => {
-  const submitButton = cardForm.querySelector(
-    validationConfig.submitButtonSelector
-  );
-  submitButton.classList.add(validationConfig.inactiveButtonClass);
-  submitButton.disabled = true;
-});
+// const cardForm = document.querySelector(".modal__form");
+// cardForm.addEventListener("reset", () => {
+//   const submitButton = cardForm.querySelector(
+//     validationConfig.submitButtonSelector
+//   );
+//   submitButton.classList.add(validationConfig.inactiveButtonClass);
+//   submitButton.disabled = true;
+// });
 
-// Profile form reset 
-const profileForm = document.querySelector(".modal__form_type_profile");
-profileForm.addEventListener("reset", () => {
-  const submitButton = profileForm.querySelector(
-    validationConfig.submitButtonSelector
-  );
-  submitButton.classList.add(validationConfig.inactiveButtonClass);
-  submitButton.disabled = true;
-});
+// // Profile form reset
+// const profileForm = document.querySelector("#edit-profile-modal .modal__form");
+// profileForm.addEventListener("reset", () => {
+//   const submitButton = profileForm.querySelector(
+//     validationConfig.submitButtonSelector
+//   );
+//   submitButton.classList.add(validationConfig.inactiveButtonClass);
+//   submitButton.disabled = true;
+// });
 
-// Edit form reset
-const editForm = document.querySelector(".modal__form_type_edit");
-editForm.addEventListener("reset", () => {
-  const submitButton = editForm.querySelector(
-    validationConfig.submitButtonSelector
-  );
-  submitButton.classList.add(validationConfig.inactiveButtonClass);
-  submitButton.disabled = true;
-});
-
-checkInputValidity(input, form, config);
-  toggleButtonState(inputs, submitButton, config);
-};
+// // Edit form reset
+// const editForm = document.querySelector("#newPost-modal .modal__form");
+// editForm.addEventListener("reset", () => {
+//   const submitButton = editForm.querySelector(
+//     validationConfig.submitButtonSelector
+//   );
+//   submitButton.classList.add(validationConfig.inactiveButtonClass);
+//   submitButton.disabled = true;
+//   toggleButtonState(inputs, submitButton, config);
+// });
 
 // Check input validity
 const checkInputValidity = (input, form, config) => {
@@ -76,7 +76,7 @@ const checkInputValidity = (input, form, config) => {
 
 // Show input error
 const showInputError = (input, form, errorMessage, config) => {
-  const errorElement = form.querySelector(`.${input.id}-error`);
+  const errorElement = form.querySelector(`#${input.id}-error`);
   input.classList.add(config.inputErrorClass);
   errorElement.textContent = errorMessage;
   errorElement.classList.add(config.errorClass);
@@ -84,7 +84,7 @@ const showInputError = (input, form, errorMessage, config) => {
 
 // Hide input error
 const hideInputError = (input, form, config) => {
-  const errorElement = form.querySelector(`.${input.id}-error`);
+  const errorElement = form.querySelector(`#${input.id}-error`);
   input.classList.remove(config.inputErrorClass);
   errorElement.classList.remove(config.errorClass);
   errorElement.textContent = "";
@@ -101,3 +101,5 @@ const toggleButtonState = (inputs, button, config) => {
     button.disabled = false;
   }
 };
+
+enableValidation(validationConfig);
