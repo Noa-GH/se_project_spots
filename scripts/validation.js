@@ -1,69 +1,19 @@
+// ============================================
+// VALIDATION CONFIGURATION
+// ============================================
+
 const validationConfig = {
-  formSelector: ".modal__form", // Finds all forms to validate
-  inputSelector: ".modal__input", // Finds all inputs in each form
-  submitButtonSelector: ".modal__submit-button", // Finds submit buttons
-  inactiveButtonClass: "modal__submit-button_disabled", // Disables buttons
-  inputErrorClass: "modal__input_type_error", // Styles invalid inputs
-  errorClass: "modal__error_visible", // Shows error messages
+  formSelector: ".modal__form",
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__submit-button",
+  inactiveButtonClass: "modal__submit-button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
 };
 
-// Enable validation with matching form selector
-const enableValidation = (config) => {
-  const forms = Array.from(document.querySelectorAll(config.formSelector));
-  forms.forEach((form) => {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-    });
-    setEventListeners(form, config);
-  });
-};
-
-// Creating eventlisteners for inputs
-const setEventListeners = (form, config) => {
-  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
-  const submitButton = form.querySelector(config.submitButtonSelector);
-
-  // set initial button state
-  toggleButtonState(inputs, submitButton, config);
-
-  inputs.forEach((input) => {
-    input.addEventListener("input", () => {
-      checkInputValidity(input, form, config);
-      toggleButtonState(inputs, submitButton, config);
-    });
-  });
-};
-
-// Card form reset
-// const cardForm = document.querySelector(".modal__form");
-// cardForm.addEventListener("reset", () => {
-//   const submitButton = cardForm.querySelector(
-//     validationConfig.submitButtonSelector
-//   );
-//   submitButton.classList.add(validationConfig.inactiveButtonClass);
-//   submitButton.disabled = true;
-// });
-
-// // Profile form reset
-// const profileForm = document.querySelector("#edit-profile-modal .modal__form");
-// profileForm.addEventListener("reset", () => {
-//   const submitButton = profileForm.querySelector(
-//     validationConfig.submitButtonSelector
-//   );
-//   submitButton.classList.add(validationConfig.inactiveButtonClass);
-//   submitButton.disabled = true;
-// });
-
-// // Edit form reset
-// const editForm = document.querySelector("#newPost-modal .modal__form");
-// editForm.addEventListener("reset", () => {
-//   const submitButton = editForm.querySelector(
-//     validationConfig.submitButtonSelector
-//   );
-//   submitButton.classList.add(validationConfig.inactiveButtonClass);
-//   submitButton.disabled = true;
-//   toggleButtonState(inputs, submitButton, config);
-// });
+// ============================================
+// VALIDATION FUNCTIONS
+// ============================================
 
 // Check input validity
 const checkInputValidity = (input, form, config) => {
@@ -101,5 +51,74 @@ const toggleButtonState = (inputs, button, config) => {
     button.disabled = false;
   }
 };
+
+// Creating event listeners for inputs
+const setEventListeners = (form, config) => {
+  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+  const submitButton = form.querySelector(config.submitButtonSelector);
+
+  // Set initial button state
+  toggleButtonState(inputs, submitButton, config);
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      checkInputValidity(input, form, config);
+      toggleButtonState(inputs, submitButton, config);
+    });
+  });
+};
+
+// Enable validation with matching form selector
+const enableValidation = (config) => {
+  const forms = Array.from(document.querySelectorAll(config.formSelector));
+  forms.forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+    });
+    setEventListeners(form, config);
+  });
+};
+
+// ============================================
+// PUBLIC API - Exposed to other scripts
+// ============================================
+
+// Reset form validation state
+const resetFormValidation = (form, config) => {
+  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+  const submitButton = form.querySelector(config.submitButtonSelector);
+
+  inputs.forEach((input) => {
+    hideInputError(input, form, config);
+  });
+
+  // Disable button by default when resetting
+  submitButton.classList.add(config.inactiveButtonClass);
+  submitButton.disabled = true;
+};
+
+// Revalidate form (useful when prepopulating fields)
+const revalidateForm = (form, config) => {
+  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
+  const submitButton = form.querySelector(config.submitButtonSelector);
+
+  inputs.forEach((input) => {
+    checkInputValidity(input, form, config);
+  });
+
+  toggleButtonState(inputs, submitButton, config);
+};
+
+// ============================================
+// EXPOSE TO GLOBAL SCOPE
+// ============================================
+
+window.validationConfig = validationConfig;
+window.resetFormValidation = resetFormValidation;
+window.revalidateForm = revalidateForm;
+
+// ============================================
+// INITIALIZE VALIDATION
+// ============================================
 
 enableValidation(validationConfig);

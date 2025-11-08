@@ -140,7 +140,7 @@ function setupModalListeners(modal, openButton) {
     });
   }
 
-  // Close via close button (handle clicks on button or image inside)
+  // Close via close button
   if (closeButton) {
     closeButton.addEventListener("click", () => {
       closeModal(modal);
@@ -187,14 +187,14 @@ function handleCardClick(evt) {
   // Handle like button
   if (target.classList.contains("card__like-btn")) {
     target.classList.toggle("card__like-btn_active");
-    return; // Stop propagation
+    return;
   }
 
   // Handle delete button
   if (target.classList.contains("card__delete-btn")) {
     const card = target.closest(".card");
     card.remove();
-    return; // Stop propagation
+    return;
   }
 
   // Handle image preview
@@ -239,32 +239,32 @@ function handleNewPostSubmit(evt) {
 
   renderCard(cardData, "prepend");
 
+  // Reset form and disable submit button
   evt.target.reset();
+  const submitButton = evt.target.querySelector(config.submitButtonSelector);
+  submitButton.classList.add("modal__submit-button_disabled");
+  submitButton.disabled = true;
+
   closeModal(newPostModal);
 }
 
-function resetFormValidation(form) {
-  const inputs = Array.from(form.querySelectorAll(config.inputSelector));
-  const submitButton = form.querySelector(config.submitButtonSelector);
-
-  inputs.forEach((input) => {
-    const errorElement = form.querySelector(`#${input.id}-error`);
-    input.classList.remove("modal__input_type_error");
-    if (errorElement) {
-      errorElement.classList.remove("modal__error_visible");
-      errorElement.textContent = "";
-    }
-  });
-
-  // Reset button state
-  submitButton.classList.remove("modal__submit-button_disabled");
-  submitButton.disabled = false;
-}
+// ============================================
+// MODAL PREPARATION FUNCTIONS
+// ============================================
 
 function prepareEditProfileModal() {
+  // Populate fields with current values
   editProfileNameInput.value = profileName.textContent;
   editProfileDescriptionInput.value = profileDescription.textContent;
-  resetFormValidation(editProfileForm);
+
+  // Reset validation state and revalidate (since fields are pre-filled)
+  window.resetFormValidation(editProfileForm, window.validationConfig);
+  window.revalidateForm(editProfileForm, window.validationConfig);
+}
+
+function prepareNewPostModal() {
+  // Reset validation state for clean form
+  window.resetFormValidation(newPostForm, window.validationConfig);
 }
 
 // ============================================
@@ -290,6 +290,7 @@ function init() {
 
   // Setup New Post Modal
   setupModalListeners(newPostModal, newPostButton);
+  newPostButton.addEventListener("click", prepareNewPostModal);
   newPostForm.addEventListener("submit", handleNewPostSubmit);
 
   // Setup Preview Modal
