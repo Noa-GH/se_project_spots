@@ -15,6 +15,7 @@ const config = {
   cardLikeButtonSelector: ".card__like-btn",
   cardLikeButtonActiveClass: "card__like-btn_active",
   cardDeleteButtonSelector: ".card__delete-btn",
+  setTimeoutDelay: 250,
 };
 
 const selectors = {
@@ -118,6 +119,8 @@ function handleEscapeKey(evt) {
 }
 
 function openModal(modal) {
+  // Setup ESC key listener (Local to opening modal)
+  document.addEventListener("keydown", handleEscapeKey);
   modal.classList.add("modal_is-opened");
 }
 
@@ -127,7 +130,7 @@ function closeModal(modal) {
   setTimeout(() => {
     modal.classList.remove("modal_is-opened");
     modal.classList.remove("modal_is-closing");
-  }, 300);
+  }, config.setTimeoutDelay);
 }
 
 function setupModalListeners(modal, openButton) {
@@ -264,7 +267,7 @@ function prepareEditProfileModal() {
 
 function prepareNewPostModal() {
   // Reset validation state for clean form
-  window.resetFormValidation(newPostForm, window.validationConfig);
+  window.revalidateForm(newPostForm, window.validationConfig);
 }
 
 // ============================================
@@ -279,9 +282,6 @@ function init() {
 
   // Setup card event delegation
   cardList.addEventListener("click", handleCardClick);
-
-  // Setup ESC key listener (global, always active)
-  document.addEventListener("keydown", handleEscapeKey);
 
   // Setup Edit Profile Modal
   setupModalListeners(editProfileModal, editProfileButton);

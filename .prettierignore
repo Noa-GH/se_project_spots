@@ -30,3 +30,6 @@ yarn.lock
 # Ignore miscellaneous
 .DS_Store
 *.bak
+
+#Irgnore Normalize Files
+vendor/normalize.css
