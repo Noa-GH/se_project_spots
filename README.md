@@ -26,8 +26,9 @@ It will have the lastest updated iteration of the project and this will be the w
 
 - Project Link: (https://noa-gh.github.io/se_project_spots/)
 
-- Video about the project: (https://drive.google.com/file/d/1vxqtm5IdkOgH8jxR2oq3vXEMuUCqQUsh/view?usp=sharing)
+- Check out [Project Pitch on Stage 9](https://drive.google.com/file/d/13lFEwHLyReM7xMKoZV7IHKiJIPtgIKn7/view?usp=sharing), where I describe my
+  project and some challenges I faced while building it.
 
 ### Notice The Use of AI.
 
-###### **Primarily use of Claude for coding assistance and Gemini AI for deep insight and research.**
+###### **Primarily use of Claude for coding assistance and DOT from the TripleTen Team and Copilot for deep insight and research.**
