@@ -15,6 +15,7 @@ const config = {
   cardLikeButtonSelector: ".card__like-btn",
   cardLikeButtonActiveClass: "card__like-btn_active",
   cardDeleteButtonSelector: ".card__delete-btn",
+  setTimeoutDelay: 250,
 };
 
 const selectors = {
@@ -118,6 +119,8 @@ function handleEscapeKey(evt) {
 }
 
 function openModal(modal) {
+  // Setup ESC key listener (Local to opening modal)
+  document.addEventListener("keydown", handleEscapeKey);
   modal.classList.add("modal_is-opened");
 }
 
@@ -127,7 +130,7 @@ function closeModal(modal) {
   setTimeout(() => {
     modal.classList.remove("modal_is-opened");
     modal.classList.remove("modal_is-closing");
-  }, 300);
+  }, config.setTimeoutDelay);
 }
 
 function setupModalListeners(modal, openButton) {
@@ -140,7 +143,7 @@ function setupModalListeners(modal, openButton) {
     });
   }
 
-  // Close via close button (handle clicks on button or image inside)
+  // Close via close button
   if (closeButton) {
     closeButton.addEventListener("click", () => {
       closeModal(modal);
@@ -159,7 +162,7 @@ function setupModalListeners(modal, openButton) {
 // CARD FUNCTIONS
 // ============================================
 
-function getCardElelment(cardData) {
+function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
 
   const cardImage = cardElement.querySelector(config.cardImageSelector);
@@ -173,7 +176,7 @@ function getCardElelment(cardData) {
 }
 
 function renderCard(cardData, method = "append") {
-  const cardElement = getCardElelment(cardData);
+  const cardElement = getCardElement(cardData);
   if (method === "prepend") {
     cardList.prepend(cardElement);
   } else {
@@ -187,14 +190,14 @@ function handleCardClick(evt) {
   // Handle like button
   if (target.classList.contains("card__like-btn")) {
     target.classList.toggle("card__like-btn_active");
-    return; // Stop propagation
+    return;
   }
 
   // Handle delete button
   if (target.classList.contains("card__delete-btn")) {
     const card = target.closest(".card");
     card.remove();
-    return; // Stop propagation
+    return;
   }
 
   // Handle image preview
@@ -239,13 +242,32 @@ function handleNewPostSubmit(evt) {
 
   renderCard(cardData, "prepend");
 
+  // Reset form and disable submit button
   evt.target.reset();
+  const submitButton = evt.target.querySelector(config.submitButtonSelector);
+  submitButton.classList.add("modal__submit-button_disabled");
+  submitButton.disabled = true;
+
   closeModal(newPostModal);
 }
 
+// ============================================
+// MODAL PREPARATION FUNCTIONS
+// ============================================
+
 function prepareEditProfileModal() {
+  // Populate fields with current values
   editProfileNameInput.value = profileName.textContent;
   editProfileDescriptionInput.value = profileDescription.textContent;
+
+  // Reset validation state and revalidate (since fields are pre-filled)
+  window.resetFormValidation(editProfileForm, window.validationConfig);
+  window.revalidateForm(editProfileForm, window.validationConfig);
+}
+
+function prepareNewPostModal() {
+  // Reset validation state for clean form
+  window.revalidateForm(newPostForm, window.validationConfig);
 }
 
 // ============================================
@@ -261,9 +283,6 @@ function init() {
   // Setup card event delegation
   cardList.addEventListener("click", handleCardClick);
 
-  // Setup ESC key listener (global, always active)
-  document.addEventListener("keydown", handleEscapeKey);
-
   // Setup Edit Profile Modal
   setupModalListeners(editProfileModal, editProfileButton);
   editProfileButton.addEventListener("click", prepareEditProfileModal);
@@ -271,6 +290,7 @@ function init() {
 
   // Setup New Post Modal
   setupModalListeners(newPostModal, newPostButton);
+  newPostButton.addEventListener("click", prepareNewPostModal);
   newPostForm.addEventListener("submit", handleNewPostSubmit);
 
   // Setup Preview Modal
