@@ -1,3 +1,5 @@
+import { enableValidation, validationConfig } from "../scripts/validation.js";
+
 // ============================================
 // CONSTANTS & SELECTORS
 // ============================================
@@ -108,168 +110,172 @@ const cardTemplate = document
 // ============================================
 // MODAL FUNCTIONS
 // ============================================
-
-function handleEscapeKey(evt) {
-  if (evt.key === "Escape") {
-    const openModal = document.querySelector(".modal_is-opened");
-    if (openModal) {
-      closeModal(openModal);
+// Created as an IIFE to modalize the modal functions and avoid polluting global scope
+(function () {
+  function handleEscapeKey(evt) {
+    if (evt.key === "Escape") {
+      const openModal = document.querySelector(".modal_is-opened");
+      if (openModal) {
+        closeModal(openModal);
+      }
     }
   }
-}
 
-function openModal(modal) {
-  // Setup ESC key listener (Local to opening modal)
-  document.addEventListener("keydown", handleEscapeKey);
-  modal.classList.add("modal_is-opened");
-}
-
-function closeModal(modal) {
-  modal.classList.add("modal_is-closing");
-
-  setTimeout(() => {
-    modal.classList.remove("modal_is-opened");
-    modal.classList.remove("modal_is-closing");
-  }, config.setTimeoutDelay);
-}
-
-function setupModalListeners(modal, openButton) {
-  const closeButton = modal.querySelector(config.closeButtonSelector);
-
-  // Open modal (only if openButton exists)
-  if (openButton) {
-    openButton.addEventListener("click", () => {
-      openModal(modal);
-    });
+  function openModal(modal) {
+    // Setup ESC key listener (Local to opening modal)
+    document.addEventListener("keydown", handleEscapeKey);
+    modal.classList.add("modal_is-opened");
   }
 
-  // Close via close button
-  if (closeButton) {
-    closeButton.addEventListener("click", () => {
-      closeModal(modal);
-    });
+  function closeModal(modal) {
+    modal.classList.add("modal_is-closing");
+
+    setTimeout(() => {
+      modal.classList.remove("modal_is-opened");
+      modal.classList.remove("modal_is-closing");
+    }, config.setTimeoutDelay);
   }
 
-  // Close when clicking outside (on overlay)
-  modal.addEventListener("mousedown", (evt) => {
-    if (evt.target === modal) {
-      closeModal(modal);
+  function setupModalListeners(modal, openButton) {
+    const closeButton = modal.querySelector(config.closeButtonSelector);
+
+    // Open modal (only if openButton exists)
+    if (openButton) {
+      openButton.addEventListener("click", () => {
+        openModal(modal);
+      });
     }
-  });
-}
 
+    // Close via close button
+    if (closeButton) {
+      closeButton.addEventListener("click", () => {
+        closeModal(modal);
+      });
+    }
+
+    // Close when clicking outside (on overlay)
+    modal.addEventListener("mousedown", (evt) => {
+      if (evt.target === modal) {
+        closeModal(modal);
+      }
+    });
+  }
+})();
 // ============================================
 // CARD FUNCTIONS
 // ============================================
+// Created as an IIFE to modalize the modal functions and avoid polluting global scope
+(function () {
+  function getCardElement(cardData) {
+    const cardElement = cardTemplate.cloneNode(true);
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
+    const cardImage = cardElement.querySelector(config.cardImageSelector);
+    const cardTitle = cardElement.querySelector(config.cardTitleSelector);
 
-  const cardImage = cardElement.querySelector(config.cardImageSelector);
-  const cardTitle = cardElement.querySelector(config.cardTitleSelector);
+    cardImage.src = cardData.link;
+    cardImage.alt = cardData.name;
+    cardTitle.textContent = cardData.name;
 
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-  cardTitle.textContent = cardData.name;
-
-  return cardElement;
-}
-
-function renderCard(cardData, method = "append") {
-  const cardElement = getCardElement(cardData);
-  if (method === "prepend") {
-    cardList.prepend(cardElement);
-  } else {
-    cardList.append(cardElement);
-  }
-}
-
-function handleCardClick(evt) {
-  const target = evt.target;
-
-  // Handle like button
-  if (target.classList.contains("card__like-btn")) {
-    target.classList.toggle("card__like-btn_active");
-    return;
+    return cardElement;
   }
 
-  // Handle delete button
-  if (target.classList.contains("card__delete-btn")) {
-    const card = target.closest(".card");
-    card.remove();
-    return;
+  function renderCard(cardData, method = "append") {
+    const cardElement = getCardElement(cardData);
+    if (method === "prepend") {
+      cardList.prepend(cardElement);
+    } else {
+      cardList.append(cardElement);
+    }
   }
 
-  // Handle image preview
-  if (target.classList.contains("card__image")) {
-    const card = target.closest(".card");
-    const title = card.querySelector(".card__title").textContent;
-    openPreviewModal(target.src, title);
-  }
-}
+  function handleCardClick(evt) {
+    const target = evt.target;
 
+    // Handle like button
+    if (target.classList.contains("card__like-btn")) {
+      target.classList.toggle("card__like-btn_active");
+      return;
+    }
+
+    // Handle delete button
+    if (target.classList.contains("card__delete-btn")) {
+      const card = target.closest(".card");
+      card.remove();
+      return;
+    }
+
+    // Handle image preview
+    if (target.classList.contains("card__image")) {
+      const card = target.closest(".card");
+      const title = card.querySelector(".card__title").textContent;
+      openPreviewModal(target.src, title);
+    }
+  }
+})();
 // ============================================
 // PREVIEW MODAL FUNCTIONS
 // ============================================
+// Created as an IIFE to modalize the modal functions and avoid polluting global scope
+(function () {
+  function openPreviewModal(imageSrc, title) {
+    previewImage.src = imageSrc;
+    previewImage.alt = title;
+    previewCaption.textContent = title;
+    openModal(previewModal);
+  }
 
-function openPreviewModal(imageSrc, title) {
-  previewImage.src = imageSrc;
-  previewImage.alt = title;
-  previewCaption.textContent = title;
-  openModal(previewModal);
-}
+  // ============================================
+  // FORM HANDLERS
+  // ============================================
 
-// ============================================
-// FORM HANDLERS
-// ============================================
+  function handleEditProfileSubmit(evt) {
+    evt.preventDefault();
 
-function handleEditProfileSubmit(evt) {
-  evt.preventDefault();
+    profileName.textContent = editProfileNameInput.value;
+    profileDescription.textContent = editProfileDescriptionInput.value;
 
-  profileName.textContent = editProfileNameInput.value;
-  profileDescription.textContent = editProfileDescriptionInput.value;
+    closeModal(editProfileModal);
+  }
 
-  closeModal(editProfileModal);
-}
+  function handleNewPostSubmit(evt) {
+    evt.preventDefault();
 
-function handleNewPostSubmit(evt) {
-  evt.preventDefault();
+    const cardData = {
+      name: newPostTitleInput.value,
+      link: newPostImageInput.value,
+    };
 
-  const cardData = {
-    name: newPostTitleInput.value,
-    link: newPostImageInput.value,
-  };
+    renderCard(cardData, "prepend");
 
-  renderCard(cardData, "prepend");
+    // Reset form and disable submit button
+    evt.target.reset();
+    const submitButton = evt.target.querySelector(config.submitButtonSelector);
+    submitButton.classList.add("modal__submit-button_disabled");
+    submitButton.disabled = true;
 
-  // Reset form and disable submit button
-  evt.target.reset();
-  const submitButton = evt.target.querySelector(config.submitButtonSelector);
-  submitButton.classList.add("modal__submit-button_disabled");
-  submitButton.disabled = true;
-
-  closeModal(newPostModal);
-}
-
+    closeModal(newPostModal);
+  }
+})();
 // ============================================
 // MODAL PREPARATION FUNCTIONS
 // ============================================
+// Created as an IIFE to modalize the modal functions and avoid polluting global scope
+(function () {
+  function prepareEditProfileModal() {
+    // Populate fields with current values
+    editProfileNameInput.value = profileName.textContent;
+    editProfileDescriptionInput.value = profileDescription.textContent;
 
-function prepareEditProfileModal() {
-  // Populate fields with current values
-  editProfileNameInput.value = profileName.textContent;
-  editProfileDescriptionInput.value = profileDescription.textContent;
+    // Reset validation state and revalidate (since fields are pre-filled)
+    window.resetFormValidation(editProfileForm, window.validationConfig);
+    window.revalidateForm(editProfileForm, window.validationConfig);
+  }
 
-  // Reset validation state and revalidate (since fields are pre-filled)
-  window.resetFormValidation(editProfileForm, window.validationConfig);
-  window.revalidateForm(editProfileForm, window.validationConfig);
-}
-
-function prepareNewPostModal() {
-  // Reset validation state for clean form
-  window.revalidateForm(newPostForm, window.validationConfig);
-}
-
+  function prepareNewPostModal() {
+    // Reset validation state for clean form
+    window.revalidateForm(newPostForm, window.validationConfig);
+  }
+})();
 // ============================================
 // INITIALIZATION
 // ============================================
@@ -296,6 +302,8 @@ function init() {
   // Setup Preview Modal
   setupModalListeners(previewModal, null);
 }
+
+enableValidation(validationConfig);
 
 // Start the application
 init();

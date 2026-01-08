@@ -2,7 +2,7 @@
 // VALIDATION CONFIGURATION
 // ============================================
 
-const validationConfig = {
+export const validationConfig = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__submit-button",
@@ -69,7 +69,7 @@ const setEventListeners = (form, config) => {
 };
 
 // Enable validation with matching form selector
-const enableValidation = (config) => {
+export const enableValidation = (config) => {
   const forms = Array.from(document.querySelectorAll(config.formSelector));
   forms.forEach((form) => {
     form.addEventListener("submit", (e) => {
@@ -120,5 +120,3 @@ window.revalidateForm = revalidateForm;
 // ============================================
 // INITIALIZE VALIDATION
 // ============================================
-
-enableValidation(validationConfig);
