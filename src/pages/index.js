@@ -39,31 +39,39 @@ const selectors = {
   previewCaption: ".modal__caption",
 };
 
+// Importing Images into Index.js
+import valThorens from"../images/1-photo-by-moritz-feldmann-from-pexels.jpg";
+import restaurantTerrace from"../images/2-photo-by-ceiline-from-pexels.jpg";
+import outdoorCafe from"../images/3-photo-by-tubanur-dogan-from-pexels.jpg";
+import longForest from"../images/4-photo-by-maurice-laschet-from-pexels.jpg";
+import tunnelLight from"../images/5-photo-by-van-anh-nguyen-from-pexels.jpg";
+import mountainHouse from"../images/6-photo-by-moritz-feldmann-from-pexels.jpg";
+
 // Initial card data
 const initialCards = [
   {
     name: "Val Thorens",
-    link: "./images/1-photo-by-moritz-feldmann-from-pexels.jpg",
+    image: valThorens
   },
   {
     name: "Restaurant terrace",
-    link: "./images/2-photo-by-ceiline-from-pexels.jpg",
+    link: restaurantTerrace
   },
   {
     name: "An outdoor cafe",
-    link: "./images/3-photo-by-tubanur-dogan-from-pexels.jpg",
+    link: outdoorCafe
   },
   {
     name: "A very long over the forest and through trees",
-    link: "./images/4-photo-by-maurice-laschet-from-pexels.jpg",
+    link: longForest
   },
   {
     name: "Tunnel with morning light",
-    link: "./images/5-photo-by-van-anh-nguyen-from-pexels.jpg",
+    link: tunnelLight
   },
   {
     name: "Mountain house",
-    link: "./images/6-photo-by-moritz-feldmann-from-pexels.jpg",
+    link: mountainHouse
   },
 ];
 
