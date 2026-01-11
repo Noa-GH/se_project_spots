@@ -16,6 +16,8 @@ The project was made to share content such as photos that will be attached to in
 - Bash
 - JavaScript
 - DOM
+- OOP
+- WEBPACK/NPM
 
 ## Images, and video documention
 
@@ -31,4 +33,4 @@ It will have the lastest updated iteration of the project and this will be the w
 
 ### Notice The Use of AI.
 
-###### **Primarily use of Claude for coding assistance and DOT from the TripleTen Team and Copilot for deep insight and research.**
+###### **Primarily use of Claude for coding assistance/review. DOT from the TripleTen Team. Copilot for deep insight and research. Recent addition to AI toolbelt is Cursor IDE for deep debugging.**
