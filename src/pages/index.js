@@ -9,22 +9,6 @@ import plusImage from "../images/Plus.svg";
 import { enableValidation, validationConfig } from "../scripts/validation.js";
 // Importing API
 import Api from "../unitls/Api.js";
-// Importing Images
-import valThorens from "../images/1-photo-by-moritz-feldmann-from-pexels.jpg";
-import restaurantTerrace from "../images/2-photo-by-ceiline-from-pexels.jpg";
-import outdoorCafe from "../images/3-photo-by-tubanur-dogan-from-pexels.jpg";
-import longForest from "../images/4-photo-by-maurice-laschet-from-pexels.jpg";
-import tunnelLight from "../images/5-photo-by-van-anh-nguyen-from-pexels.jpg";
-import mountainHouse from "../images/6-photo-by-moritz-feldmann-from-pexels.jpg";
-// Initial card data
-// const initialCards = [
-//   { name: "Val Thorens", link: valThorens },
-//   { name: "Restaurant terrace", link: restaurantTerrace },
-//   { name: "An outdoor cafe", link: outdoorCafe },
-//   { name: "A very long over the forest and through trees", link: longForest },
-//   { name: "Tunnel with morning light", link: tunnelLight },
-//   { name: "Mountain house", link: mountainHouse },
-// ];
 // ============================================
 // API CONFIGURATION
 // ============================================
@@ -35,15 +19,9 @@ const api = new Api({
     authorization : "78229750-07b7-4137-b187-46f0022d2a0c",
   } 
 });
-api.getInitialCards()
-  .then((cards) => {
-    // Render initial cards
-    cards.forEach((cardData) => renderCard(cardData));
-    console.log(cards);
-  })
-  .catch((err) => {
-    console.error(err);
-  })
+
+
+
   
 // ============================================
 // CONSTANTS
@@ -251,6 +229,13 @@ const avatarImg = document.querySelector(".profile__avatar");
   if (addIcon) {
     addIcon.src = plusImage;
   }
+
+  // Fetch data
+  api.getAppInfo()
+    .then(([cards]) => {
+      cards.forEach((cardData) => renderCard(cardData));
+    })
+    .catch(console.error);
 
   // Setup card event delegation
   const cardList = document.querySelector(config.cardListSelector);

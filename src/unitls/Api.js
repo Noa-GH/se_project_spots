@@ -3,6 +3,10 @@ class Api {
         this._baseUrl = baseUrl;
         this._headers = headers;
     }
+
+    getAppInfo() {
+        return Promise.all([this.getInitialCards()])
+    }
     
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
