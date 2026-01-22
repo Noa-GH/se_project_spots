@@ -1,7 +1,14 @@
+// Importing CSS
 import "./index.css";
+// Importing Avatar Image
 import avatarImage from "../images/Avatar.svg";
+import logoImage from "../images/Logo.svg";
+import pencilImage from "../images/pencil.svg";
+import plusImage from "../images/Plus.svg";
+// Importing validation
 import { enableValidation, validationConfig } from "../scripts/validation.js";
-
+// Importing API
+import Api from "../unitls/Api.js";
 // Importing Images
 import valThorens from "../images/1-photo-by-moritz-feldmann-from-pexels.jpg";
 import restaurantTerrace from "../images/2-photo-by-ceiline-from-pexels.jpg";
@@ -9,7 +16,6 @@ import outdoorCafe from "../images/3-photo-by-tubanur-dogan-from-pexels.jpg";
 import longForest from "../images/4-photo-by-maurice-laschet-from-pexels.jpg";
 import tunnelLight from "../images/5-photo-by-van-anh-nguyen-from-pexels.jpg";
 import mountainHouse from "../images/6-photo-by-moritz-feldmann-from-pexels.jpg";
-
 // Initial card data
 const initialCards = [
   { name: "Val Thorens", link: valThorens },
@@ -19,7 +25,23 @@ const initialCards = [
   { name: "Tunnel with morning light", link: tunnelLight },
   { name: "Mountain house", link: mountainHouse },
 ];
-
+// ============================================
+// API CONFIGURATION
+// ============================================
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    "Content-Type": "application/json",
+    authorization : "78229750-07b7-4137-b187-46f0022d2a0c",
+  } 
+});
+api.getInitialCards()
+  .then((cards) => {
+    console.log(cards);
+  })
+  .catch((err) => {
+    console.error(err);
+  })
 // ============================================
 // CONSTANTS
 // ============================================
@@ -33,7 +55,6 @@ const config = {
   cardListSelector: ".cards__list",
   setTimeoutDelay: 250,
 };
-
 // ============================================
 // MODAL FUNCTIONS
 // ============================================
@@ -74,7 +95,6 @@ function setupModalListeners(modal, openButton) {
     if (evt.target === modal) closeModal(modal);
   });
 }
-
 // ============================================
 // CARD FUNCTIONS
 // ============================================
@@ -127,7 +147,6 @@ function handleCardClick(evt) {
     openPreviewModal(target.src, title);
   }
 }
-
 // ============================================
 // PREVIEW MODAL
 // ============================================
@@ -141,7 +160,6 @@ function openPreviewModal(imageSrc, title) {
   previewCaption.textContent = title;
   openModal(previewModal);
 }
-
 // ============================================
 // FORM HANDLERS
 // ============================================
@@ -179,7 +197,6 @@ function handleNewPostSubmit(evt) {
 
   closeModal(document.querySelector("#newPost-modal"));
 }
-
 // ============================================
 // MODAL PREPARATION
 // ============================================
@@ -208,15 +225,28 @@ function prepareNewPostModal() {
     window.resetFormValidation(form, validationConfig);
   }
 }
-
 // ============================================
 // INITIALIZATION
 // ============================================
-
 function init() {
 const avatarImg = document.querySelector(".profile__avatar");
-if (avatarImg) {
-  avatarImg.src = avatarImage;
+  if (avatarImg) {
+    avatarImg.src = avatarImage;
+  }
+
+  const logoImg = document.querySelector(".header__logo");
+  if (logoImg) {
+    logoImg.src = logoImage;
+  }
+
+  const editIcon = document.querySelector(".profile__edit-icon");
+  if (editIcon) {
+    editIcon.src = pencilImage;
+  }
+
+  const addIcon = document.querySelector(".profile__add-icon");
+  if (addIcon) {
+    addIcon.src = plusImage;
   }
   
   // Render initial cards
@@ -248,9 +278,7 @@ if (avatarImg) {
   const previewModal = document.querySelector("#preview-modal");
   setupModalListeners(previewModal, null);
 }
-
 // Enable validation
 enableValidation(validationConfig);
-
 // Start app
 init();

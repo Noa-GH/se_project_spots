@@ -10,6 +10,7 @@ const presets = [
       // Use polyfills for the browsers specified in the above targets option
       // Babel uses polyfills from the core-js library
       useBuiltIns: "entry",
+      modules: "commonjs",
       corejs: "^3",
     },
   ],
