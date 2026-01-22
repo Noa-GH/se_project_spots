@@ -17,14 +17,14 @@ import longForest from "../images/4-photo-by-maurice-laschet-from-pexels.jpg";
 import tunnelLight from "../images/5-photo-by-van-anh-nguyen-from-pexels.jpg";
 import mountainHouse from "../images/6-photo-by-moritz-feldmann-from-pexels.jpg";
 // Initial card data
-const initialCards = [
-  { name: "Val Thorens", link: valThorens },
-  { name: "Restaurant terrace", link: restaurantTerrace },
-  { name: "An outdoor cafe", link: outdoorCafe },
-  { name: "A very long over the forest and through trees", link: longForest },
-  { name: "Tunnel with morning light", link: tunnelLight },
-  { name: "Mountain house", link: mountainHouse },
-];
+// const initialCards = [
+//   { name: "Val Thorens", link: valThorens },
+//   { name: "Restaurant terrace", link: restaurantTerrace },
+//   { name: "An outdoor cafe", link: outdoorCafe },
+//   { name: "A very long over the forest and through trees", link: longForest },
+//   { name: "Tunnel with morning light", link: tunnelLight },
+//   { name: "Mountain house", link: mountainHouse },
+// ];
 // ============================================
 // API CONFIGURATION
 // ============================================
@@ -37,11 +37,14 @@ const api = new Api({
 });
 api.getInitialCards()
   .then((cards) => {
+    // Render initial cards
+    cards.forEach((cardData) => renderCard(cardData));
     console.log(cards);
   })
   .catch((err) => {
     console.error(err);
   })
+  
 // ============================================
 // CONSTANTS
 // ============================================
@@ -248,9 +251,6 @@ const avatarImg = document.querySelector(".profile__avatar");
   if (addIcon) {
     addIcon.src = plusImage;
   }
-  
-  // Render initial cards
-  initialCards.forEach((cardData) => renderCard(cardData));
 
   // Setup card event delegation
   const cardList = document.querySelector(config.cardListSelector);
