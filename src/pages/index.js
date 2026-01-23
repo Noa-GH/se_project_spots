@@ -19,10 +19,6 @@ const api = new Api({
     authorization : "78229750-07b7-4137-b187-46f0022d2a0c",
   } 
 });
-
-
-
-  
 // ============================================
 // CONSTANTS
 // ============================================
@@ -83,7 +79,6 @@ function getCardElement(cardData) {
   const cardTemplate = document
     .querySelector(config.cardTemplateSelector)
     .content.querySelector(config.cardSelector);
-  
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
@@ -146,16 +141,27 @@ function openPreviewModal(imageSrc, title) {
 // ============================================
 function handleEditProfileSubmit(evt) {
   evt.preventDefault();
-  
-  const profileName = document.querySelector(".profile__name");
-  const profileDescription = document.querySelector(".profile__description");
   const nameInput = document.querySelector("#profile-name-input");
   const descInput = document.querySelector("#profile-description-input");
+  const submitButton = evt.target.querySelector(config.submitButtonSelector);
+  const initialButtonText = submitButton.textContent;
+  
+  submitButton.textContent = "Saving...";
 
-  profileName.textContent = nameInput.value;
-  profileDescription.textContent = descInput.value;
-
-  closeModal(document.querySelector("#edit-profile-modal"));
+  api.editUserInfo({ name: nameInput.value, about: descInput.value })
+    .then((data) => {
+      const profileName = document.querySelector(".profile__name");
+      const profileDescription = document.querySelector(".profile__description");
+      
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
+      
+      closeModal(document.querySelector("#edit-profile-modal"));
+    })
+    .catch(console.error)
+    .finally(() => {
+        submitButton.textContent = initialButtonText;
+    });
 }
 
 function handleNewPostSubmit(evt) {
