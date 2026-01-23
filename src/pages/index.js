@@ -4,6 +4,7 @@ import "./index.css";
 import avatarImage from "../images/Avatar.svg";
 import logoImage from "../images/Logo.svg";
 import pencilImage from "../images/pencil.svg";
+import pencilLightImage from "../images/pencil-light.svg";
 import plusImage from "../images/Plus.svg";
 // Importing validation
 import { enableValidation, validationConfig } from "../scripts/validation.js";
@@ -219,6 +220,11 @@ function init() {
 const avatarImg = document.querySelector(".profile__avatar");
   if (avatarImg) {
     avatarImg.src = avatarImage;
+  }
+
+  const avatarEditIcon = document.querySelector(".profile__avatar-btn-icon");
+  if (avatarEditIcon) {
+    avatarEditIcon.src = pencilLightImage;
   }
 
   const logoImg = document.querySelector(".header__logo");
