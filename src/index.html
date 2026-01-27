@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -20,22 +20,21 @@
       <main class="content">
         <section class="profile page__section">
           <div class="profile__avatar-container">
-            <button type="button" class="profile__avatar-btn"><img
-              src="#"
-              alt="Edit User's Avatar"
-              class="profile__avatar-btn-icon"
-            /></button>
-            <img
-              src="#"
-              alt="Current User's Avatar"
-              class="profile__avatar"
-            />
+            <button type="button" class="profile__avatar-btn">
+              <img
+                src="#"
+                alt="Edit User's Avatar"
+                class="profile__avatar-btn-icon"
+              />
+            </button>
+            <img src="#" alt="Current User's Avatar" class="profile__avatar" />
           </div>
           <div class="profile__column">
             <h1 class="profile__name">Bessie Coleman</h1>
             <p class="profile__description">Civil Avatior</p>
             <button type="button" class="profile__edit-btn">
-              <img src="#" alt="Edit Profile" class="profile__edit-icon" />Edit Profile
+              <img src="#" alt="Edit Profile" class="profile__edit-icon" />Edit
+              Profile
             </button>
           </div>
           <button type="button" class="profile__add-btn">
@@ -108,6 +107,27 @@
           </form>
         </div>
       </div>
+      <!-- Avatar Modal -->
+      <div id="avatar-modal" class="modal">
+        <div class="modal__container">
+          <button type="button" class="modal__close-button"></button>
+          <h2 class="modal__title">Edit Profile Avatar</h2>
+          <form class="modal__form" novalidate>
+            <label for="avatar-image-input" class="modal__label">
+              Profile Picture
+              <input
+                id="avatar-image-input"
+                type="url"
+                class="modal__input"
+                placeholder="Paste a link to the picture"
+                required
+              />
+              <span class="modal__error" id="avatar-image-input-error"></span>
+            </label>
+            <button type="submit" class="modal__submit-button">Save</button>
+          </form>
+        </div>
+      </div>
       <!-- New Post Modal -->
       <div id="newPost-modal" class="modal">
         <div class="modal__container">
@@ -139,6 +159,35 @@
               <span class="modal__error" id="card-title-input-error"></span>
             </label>
             <button type="submit" class="modal__submit-button">Save</button>
+          </form>
+        </div>
+      </div>
+      <!-- Delete Confirmation Modal -->
+      <div id="image-delete-modal" class="modal">
+        <div class="modal__container_type_delete">
+          <button type="button" class="modal__close-button"></button>
+          <h2 class="modal__title-delete">
+            Are you sure you want to delete this image?
+          </h2>
+          <form
+            class="modal__form modal__form-delete"
+            id="delete-form"
+            novalidate
+          >
+            <button
+              type="submit"
+              id="delete-submit"
+              class="modal__submit-button"
+            >
+              Delete
+            </button>
+            <button
+              type="button"
+              id="delete-cancel"
+              class="modal__cancel-button"
+            >
+              Cancel
+            </button>
           </form>
         </div>
       </div>
