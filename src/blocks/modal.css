@@ -92,11 +92,11 @@
 }
 
 .modal_type_preview .modal__close-button {
-  position: absolute;
+  position: fixed;
   top: 0;
-  right: -43px;
-  opacity: 0.4;
-  background-color: transparent;
+  right: 0;
+  opacity: 1;
+  background-color: #ffff;
   background-image: url("../images/Close_White.svg");
   cursor: pointer;
   z-index: 101;
@@ -119,12 +119,10 @@
 /* ==========================================================================
    DELETE CONFIRMATION MODAL
    ========================================================================== */
-/* Delete Confirmation Modal */
+
 .modal__container_type_delete {
   position: relative;
   display: flex;
-  flex-direction: column;
-  gap: 32px;
   padding: 32px 20px;
   margin: 0;
   max-width: 630px;
@@ -135,15 +133,34 @@
   background-color: #ffff;
   transform: scale(0.8) translateY(-30px);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-direction: column;
+  align-content: space-between;
+  align-items: center;
+}
+
+.modal__container_type_delete .modal__close-button {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  cursor: pointer;
+  right: -54px;
+  top: 0;
+  z-index: 101;
+  background-image: url("../images/Close_White.svg");
 }
 
 .modal__container_type_delete .modal__form {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 20px;
 }
 .modal__title-delete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   padding: 0;
   font-family: "Poppins", Arial, sans-serif;
@@ -156,9 +173,12 @@
   transform: translateY(-10px);
   transition: all 0.4s ease-out 0.1s;
 }
-.modal__form-delete {
+
+.modal__form.modal__form-delete {
+  display: flex;
+  flex-direction: row !important;
   gap: 8px;
-  padding: 18px 32px;
+  /* padding: 18px 32px; */
   font-size: 16px;
 }
 .modal__container_type_delete .modal__submit-button {
@@ -536,5 +556,38 @@
   .modal__caption {
     font-size: 12px;
     bottom: -38px;
+  }
+
+  /* Delete Modal Close Button - Mobile */
+  .modal__container_type_delete {
+    padding: 22px 12px 0;
+  }
+
+  .modal__container_type_delete .modal__title {
+    margin-bottom: 12px;
+  }
+  .modal__container_type_delete .modal__close-button {
+    top: -50px;
+    right: 0;
+  }
+  .modal__form {
+    gap: 0;
+  }
+
+  .modal__form.modal__form-delete {
+    flex-direction: column !important;
+    padding: 20px 0 12px;
+    gap: 12px;
+  }
+
+  .modal__container_type_delete {
+    max-height: none;
+    gap: 0;
+  }
+
+  .modal__container_type_delete .modal__submit-button,
+  .modal__container_type_delete .modal__cancel-button {
+    max-width: none;
+    width: 100%;
   }
 }

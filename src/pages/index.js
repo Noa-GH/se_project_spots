@@ -157,6 +157,7 @@ function handleEditProfileSubmit(evt) {
   const initialButtonText = submitButton.textContent;
 
   submitButton.textContent = "Saving...";
+  submitButton.disabled = true;
 
   api
     .editUserInfo({
@@ -175,11 +176,22 @@ function handleEditProfileSubmit(evt) {
       profileDescription.textContent = data.about;
       profileAvatar.src = data.avatar;
 
-      closeModal(document.querySelector("#edit-profile-modal"));
+      // Add delay before closing modal
+      setTimeout(() => {
+        closeModal(document.querySelector("#edit-profile-modal"));
+      }, 800);
+
+      // Reset button text AFTER modal finishes closing
+      setTimeout(() => {
+        submitButton.textContent = initialButtonText;
+        submitButton.disabled = false;
+      }, 1400);
     })
-    .catch(console.error)
-    .finally(() => {
+    .catch((error) => {
+      console.error(error);
+      // Reset button text immediately on error
       submitButton.textContent = initialButtonText;
+      submitButton.disabled = false;
     });
 }
 
