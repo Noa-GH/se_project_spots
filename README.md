@@ -18,6 +18,7 @@ The project was made to share content such as photos that will be attached to in
 - DOM
 - OOP
 - WEBPACK/NPM
+- RESTful API
 
 ## Images, and video documention
 
@@ -28,9 +29,9 @@ It will have the lastest updated iteration of the project and this will be the w
 
 - Project Link: (https://noa-gh.github.io/se_project_spots/)
 
-- Check out [Project Pitch on Stage 9](https://drive.google.com/file/d/13lFEwHLyReM7xMKoZV7IHKiJIPtgIKn7/view?usp=sharing), where I describe my
+- Check out [Spots Final Stage](https://drive.google.com/file/d/1pJ37guj1wGZIOQ_vXvHlrbjmc5kITv2R/view?usp=sharing), where I describe my
   project and some challenges I faced while building it.
 
 ### Notice The Use of AI.
 
-###### **Primarily use of Claude for coding assistance/review. DOT from the TripleTen Team. Copilot for deep insight and research. Recent addition to AI toolbelt is Cursor IDE for deep debugging.**
+###### **Primarily use of Claude for coding assistance/review. DOT from the TripleTen Team. Copilot for deep insight and research. Recently started using two different IDEs (1. Cursor 2. AntiGravity) Recent addition to AI toolbelt is Cursor IDE for deep debugging.**
