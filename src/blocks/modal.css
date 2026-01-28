@@ -96,7 +96,6 @@
   top: 0;
   right: 0;
   opacity: 1;
-  background-color: #ffff;
   background-image: url("../images/Close_White.svg");
   cursor: pointer;
   z-index: 101;

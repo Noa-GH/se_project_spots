@@ -110,7 +110,6 @@ function getCardElement(cardData) {
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
   const likeButton = cardElement.querySelector(".card__like-btn");
-  const deleteButton = cardElement.querySelector(".card__delete-btn");
 
   if (cardData.isLiked) {
     likeButton.classList.add("card__like-btn_active");
