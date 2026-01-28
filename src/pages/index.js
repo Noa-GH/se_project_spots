@@ -37,6 +37,7 @@ const config = {
 
 let cardToDelete = null;
 let cardIdToDelete = null;
+let currentUserId = null;
 // ============================================
 // MODAL FUNCTIONS
 // ============================================
@@ -80,6 +81,27 @@ function setupModalListeners(modal, openButton) {
 // ============================================
 // CARD FUNCTIONS
 // ============================================
+function handleLikeClick(cardId, isLiked) {
+  api
+    .addLike(cardId, isLiked)
+    .then((updatedCard) => {
+      console.log("Updated card:", updatedCard);
+      console.log("Updated card likes:", updatedCard.likes);
+      const cardElement = document.querySelector(`[data-id="${cardId}"]`);
+      const likeButton = cardElement.querySelector(".card__like-btn");
+      if (updatedCard.isLiked) {
+        console.log("Like button should be active");
+        likeButton.classList.add("card__like-btn_active");
+      } else {
+        console.log("Like button should be inactive");
+        likeButton.classList.remove("card__like-btn_active");
+      }
+    })
+    .catch((error) => {
+      console.error("Error adding like:", error);
+    });
+}
+
 function getCardElement(cardData) {
   const cardTemplate = document
     .querySelector(config.cardTemplateSelector)
@@ -87,6 +109,12 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-btn");
+  const deleteButton = cardElement.querySelector(".card__delete-btn");
+
+  if (cardData.isLiked) {
+    likeButton.classList.add("card__like-btn_active");
+  }
 
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
@@ -112,11 +140,13 @@ function handleCardClick(evt) {
 
   // Handle like button
   if (target.classList.contains("card__like-btn")) {
-    target.classList.toggle("card__like-btn_active");
+    const cardElement = target.closest(".card");
+    const cardId = cardElement.dataset.id;
+    const isLiked = target.classList.contains("card__like-btn_active");
+    handleLikeClick(cardId, isLiked);
     return;
   }
 
-  // Handle delete button
   // Handle delete button
   if (target.classList.contains("card__delete-btn")) {
     cardToDelete = target.closest(".card");
@@ -357,6 +387,7 @@ function init() {
   api
     .getAppInfo()
     .then(([cards, userData]) => {
+      currentUserId = userData._id;
       cards.forEach((cardData) => renderCard(cardData));
 
       const profileName = document.querySelector(".profile__name");
