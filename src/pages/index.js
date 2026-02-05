@@ -9,7 +9,7 @@ import plusImage from "../images/Plus.svg";
 // Importing validation
 import { enableValidation, validationConfig } from "../scripts/validation.js";
 // Importing API
-import Api from "../unitls/Api.js";
+import Api from "../utils/Api.js";
 // ============================================
 // API CONFIGURATION
 // ============================================
@@ -57,10 +57,7 @@ function openModal(modal) {
 
 function closeModal(modal) {
   document.removeEventListener("keydown", handleEscapeKey);
-  modal.classList.add("modal_is-closing");
-  setTimeout(() => {
-    modal.classList.remove("modal_is-opened", "modal_is-closing");
-  }, config.setTimeoutDelay);
+  modal.classList.remove("modal_is-opened", "modal_is-closing");
 }
 
 function setupModalListeners(modal, openButton) {
@@ -177,147 +174,93 @@ function openPreviewModal(imageSrc, title) {
 // ============================================
 // FORM HANDLERS
 // ============================================
-function handleEditProfileSubmit(evt) {
+function handleSubmit(request, evt, loadingText = "Saving...") {
   evt.preventDefault();
-  const nameInput = document.querySelector("#profile-name-input");
-  const descInput = document.querySelector("#profile-description-input");
-  const avatarInput = document.querySelector("#avatar-image-input");
-  const submitButton = evt.target.querySelector(config.submitButtonSelector);
-  const initialButtonText = submitButton.textContent;
-
-  submitButton.textContent = "Saving...";
+  const submitButton = evt.submitter;
+  const initialText = submitButton.textContent;
+  submitButton.textContent = loadingText;
   submitButton.disabled = true;
 
-  api
-    .editUserInfo({
-      name: nameInput.value,
-      about: descInput.value,
-      avatar: avatarInput.value,
-    })
-    .then((data) => {
-      const profileName = document.querySelector(".profile__name");
-      const profileDescription = document.querySelector(
-        ".profile__description",
-      );
-      const profileAvatar = document.querySelector(".profile__avatar");
-
-      profileName.textContent = data.name;
-      profileDescription.textContent = data.about;
-      profileAvatar.src = data.avatar;
-
-      // Add delay before closing modal
-      setTimeout(() => {
-        closeModal(document.querySelector("#edit-profile-modal"));
-      }, 800);
-
-      // Reset button text AFTER modal finishes closing
-      setTimeout(() => {
-        submitButton.textContent = initialButtonText;
-        submitButton.disabled = false;
-      }, 1400);
-    })
-    .catch((error) => {
-      console.error(error);
-      // Reset button text immediately on error
-      submitButton.textContent = initialButtonText;
-      submitButton.disabled = false;
-    });
-}
-
-function handleNewPostSubmit(evt) {
-  evt.preventDefault();
-
-  const titleInput = document.querySelector("#card-title-input");
-  const imageInput = document.querySelector("#card-image-input");
-  const submitButton = evt.target.querySelector(config.submitButtonSelector);
-  const initialButtonText = submitButton.textContent;
-
-  const cardData = {
-    name: titleInput.value,
-    link: imageInput.value,
-  };
-
-  submitButton.textContent = "Saving...";
-  submitButton.disabled = true;
-
-  api
-    .createCard(cardData)
-    .then((newCard) => {
-      // Render the card with the proper _id from the API
-      renderCard(newCard, "prepend");
+  request()
+    .then(() => {
       evt.target.reset();
-      closeModal(document.querySelector("#newPost-modal"));
-    })
-    .catch((error) => {
-      console.error("Error creating card:", error);
-      // Re-enable button on error so user can try again
-      submitButton.textContent = initialButtonText;
-      submitButton.disabled = false;
-    })
-    .finally(() => {
-      // Reset button state after modal closes
-      setTimeout(() => {
-        submitButton.textContent = initialButtonText;
-        submitButton.classList.add("modal__submit-button_disabled");
-        submitButton.disabled = true;
-      }, config.setTimeoutDelay);
-    });
-}
-
-function handleEditAvatarSubmit(evt) {
-  evt.preventDefault();
-  const avatarInput = document.querySelector("#avatar-image-input");
-  const submitButton = evt.target.querySelector(config.submitButtonSelector);
-  const initialButtonText = submitButton.textContent;
-
-  submitButton.textContent = "Saving...";
-
-  api
-    .editUserAvatar(avatarInput.value)
-    .then((data) => {
-      const avatarImg = document.querySelector(".profile__avatar");
-      avatarImg.src = data.avatar;
-      closeModal(document.querySelector("#avatar-modal"));
     })
     .catch(console.error)
     .finally(() => {
-      submitButton.textContent = initialButtonText;
+      submitButton.textContent = initialText;
+      submitButton.disabled = false;
     });
 }
 
+function handleEditProfileSubmit(evt) {
+  function makeRequest() {
+    const nameInput = document.querySelector("#profile-name-input");
+    const descInput = document.querySelector("#profile-description-input");
+    const avatarInput = document.querySelector("#avatar-image-input");
+
+    return api
+      .editUserInfo({
+        name: nameInput.value,
+        about: descInput.value,
+        avatar: avatarInput.value,
+      })
+      .then((data) => {
+        const profileName = document.querySelector(".profile__name");
+        const profileDescription = document.querySelector(
+          ".profile__description",
+        );
+        const profileAvatar = document.querySelector(".profile__avatar");
+
+        profileName.textContent = data.name;
+        profileDescription.textContent = data.about;
+        profileAvatar.src = data.avatar;
+
+        closeModal(document.querySelector("#edit-profile-modal"));
+      });
+  }
+  handleSubmit(makeRequest, evt);
+}
+
+function handleNewPostSubmit(evt) {
+  function makeRequest() {
+    const titleInput = document.querySelector("#card-title-input");
+    const imageInput = document.querySelector("#card-image-input");
+
+    const cardData = {
+      name: titleInput.value,
+      link: imageInput.value,
+    };
+
+    return api.createCard(cardData).then((newCard) => {
+      renderCard(newCard, "prepend");
+      closeModal(document.querySelector("#newPost-modal"));
+    });
+  }
+  handleSubmit(makeRequest, evt);
+}
+
+function handleEditAvatarSubmit(evt) {
+  function makeRequest() {
+    const avatarInput = document.querySelector("#avatar-image-input");
+    return api.editUserAvatar(avatarInput.value).then((data) => {
+      const avatarImg = document.querySelector(".profile__avatar");
+      avatarImg.src = data.avatar;
+      closeModal(document.querySelector("#avatar-modal"));
+    });
+  }
+  handleSubmit(makeRequest, evt);
+}
+
 function handleDeleteConfirmationSubmit(evt) {
-  evt.preventDefault();
-  if (!cardIdToDelete || !cardToDelete) return;
-
-  const submitButton = evt.target.querySelector(config.submitButtonSelector);
-  const initialButtonText = submitButton.textContent;
-  submitButton.textContent = "Deleting...";
-  submitButton.disabled = true;
-
-  api
-    .deleteCard(cardIdToDelete)
-    .then(() => {
+  function makeRequest() {
+    return api.deleteCard(cardIdToDelete).then(() => {
       cardToDelete.remove();
       cardToDelete = null;
       cardIdToDelete = null;
-
-      // Add delay before closing modal
-      setTimeout(() => {
-        closeModal(document.querySelector("#image-delete-modal"));
-      }, 800);
-
-      // Reset button text AFTER modal finishes closing
-      setTimeout(() => {
-        submitButton.textContent = initialButtonText;
-        submitButton.disabled = false;
-      }, 1400);
-    })
-    .catch((error) => {
-      console.error(error);
-      // Reset button text immediately on error
-      submitButton.textContent = initialButtonText;
-      submitButton.disabled = false;
+      closeModal(document.querySelector("#image-delete-modal"));
     });
+  }
+  handleSubmit(makeRequest, evt, "Deleting...");
 }
 // ============================================
 // MODAL PREPARATION
