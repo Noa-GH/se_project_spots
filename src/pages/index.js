@@ -38,6 +38,30 @@ const config = {
 let cardToDelete = null;
 let cardIdToDelete = null;
 let currentUserId = null;
+
+// ============================================
+// DOM ELEMENT REFRENCES (MODAL & BUTTONS)
+// ============================================
+// Edit Profile Modal
+const editProfileModal = document.querySelector("#edit-profile-modal");
+const editProfileButton = document.querySelector("#edit-profile-button");
+// Edit Avatar modal
+const editAvatarModal = document.querySelector("#edit-avatar-modal");
+const editAvatarButton = document.querySelector("#edit-avatar-button");
+// New Post modal
+const newPostModal = document.querySelector("#new-post-modal");
+const newPostButton = document.querySelector("#new-post-button");
+// Delete Confirmation Modal
+const deleteConfirmationModal = document.querySelector(
+  "#delete-confirmation-modal",
+);
+const deleteConfirmationButton = document.querySelector(
+  "#delete-confirmation-button",
+);
+// Preview Modal
+const previewModal = document.querySelector("#preview-modal");
+const previewButton = document.querySelector("#preview-button");
+
 // ============================================
 // MODAL FUNCTIONS
 // ============================================
@@ -352,8 +376,7 @@ function init() {
   cardList.addEventListener("click", handleCardClick);
 
   // Setup Edit Profile Modal
-  const editProfileModal = document.querySelector("#edit-profile-modal");
-  const editProfileButton = document.querySelector(".profile__edit-btn");
+
   const editProfileForm = editProfileModal.querySelector(config.formSelector);
 
   setupModalListeners(editProfileModal, editProfileButton);
@@ -361,8 +384,7 @@ function init() {
   editProfileForm.addEventListener("submit", handleEditProfileSubmit);
 
   // Setup Edit Avatar Modal
-  const editAvatarModal = document.querySelector("#avatar-modal");
-  const editAvatarButton = document.querySelector(".profile__avatar-btn");
+
   const editAvatarForm = editAvatarModal.querySelector(config.formSelector);
 
   setupModalListeners(editAvatarModal, editAvatarButton);
@@ -370,8 +392,7 @@ function init() {
   editAvatarForm.addEventListener("submit", handleEditAvatarSubmit);
 
   // Setup New Post Modal
-  const newPostModal = document.querySelector("#newPost-modal");
-  const newPostButton = document.querySelector(".profile__add-btn");
+
   const newPostForm = newPostModal.querySelector(config.formSelector);
 
   setupModalListeners(newPostModal, newPostButton);
@@ -379,7 +400,7 @@ function init() {
   newPostForm.addEventListener("submit", handleNewPostSubmit);
 
   // Setup Delete Confirmation Modal
-  const deleteModal = document.querySelector("#image-delete-modal");
+
   const deleteForm = deleteModal.querySelector(config.formSelector);
   const deleteCancelButton = deleteModal.querySelector(".modal__cancel-button");
 
