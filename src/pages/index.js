@@ -1,7 +1,6 @@
 // Importing CSS
 import "./index.css";
 // Importing Avatar Image
-import avatarImage from "../images/Avatar.svg";
 import logoImage from "../images/Logo.svg";
 import pencilImage from "../images/pencil.svg";
 import pencilLightImage from "../images/pencil-light.svg";
@@ -38,30 +37,6 @@ const config = {
 let cardToDelete = null;
 let cardIdToDelete = null;
 let currentUserId = null;
-
-// ============================================
-// DOM ELEMENT REFRENCES (MODAL & BUTTONS)
-// ============================================
-// Edit Profile Modal
-const editProfileModal = document.querySelector("#edit-profile-modal");
-const editProfileButton = document.querySelector("#edit-profile-button");
-// Edit Avatar modal
-const editAvatarModal = document.querySelector("#edit-avatar-modal");
-const editAvatarButton = document.querySelector("#edit-avatar-button");
-// New Post modal
-const newPostModal = document.querySelector("#new-post-modal");
-const newPostButton = document.querySelector("#new-post-button");
-// Delete Confirmation Modal
-const deleteConfirmationModal = document.querySelector(
-  "#delete-confirmation-modal",
-);
-const deleteConfirmationButton = document.querySelector(
-  "#delete-confirmation-button",
-);
-// Preview Modal
-const previewModal = document.querySelector("#preview-modal");
-const previewButton = document.querySelector("#preview-button");
-
 // ============================================
 // MODAL FUNCTIONS
 // ============================================
@@ -327,28 +302,6 @@ function prepareEditAvatarModal() {
 // INITIALIZATION
 // ============================================
 function init() {
-  /* Avatar image is now fetched from API */
-
-  const avatarEditIcon = document.querySelector(".profile__avatar-btn-icon");
-  if (avatarEditIcon) {
-    avatarEditIcon.src = pencilLightImage;
-  }
-
-  const logoImg = document.querySelector(".header__logo");
-  if (logoImg) {
-    logoImg.src = logoImage;
-  }
-
-  const editIcon = document.querySelector(".profile__edit-icon");
-  if (editIcon) {
-    editIcon.src = pencilImage;
-  }
-
-  const addIcon = document.querySelector(".profile__add-icon");
-  if (addIcon) {
-    addIcon.src = plusImage;
-  }
-
   // Fetch data
   api
     .getAppInfo()
@@ -370,6 +323,44 @@ function init() {
       }
     })
     .catch(console.error);
+
+  // ============================================
+  // DOM ELEMENT REFERENCES (MODAL & BUTTONS)
+  // ============================================
+  // Edit Profile Modal
+  const editProfileModal = document.querySelector("#edit-profile-modal");
+  const editProfileButton = document.querySelector(".profile__edit-btn");
+  // Edit Avatar modal
+  const editAvatarModal = document.querySelector("#avatar-modal");
+  const editAvatarButton = document.querySelector(".profile__avatar-btn");
+  // New Post modal
+  const newPostModal = document.querySelector("#newPost-modal");
+  const newPostButton = document.querySelector(".profile__add-btn");
+  // Delete Confirmation Modal
+  const deleteModal = document.querySelector("#image-delete-modal");
+  // Preview Modal
+  const previewModal = document.querySelector("#preview-modal");
+
+  // if statement to check if the element exists before setting the src attribute
+  const avatarEditIcon = document.querySelector(".profile__avatar-btn-icon");
+  if (avatarEditIcon) {
+    avatarEditIcon.src = pencilLightImage;
+  }
+
+  const logoImg = document.querySelector(".header__logo");
+  if (logoImg) {
+    logoImg.src = logoImage;
+  }
+
+  const editIcon = document.querySelector(".profile__edit-icon");
+  if (editIcon) {
+    editIcon.src = pencilImage;
+  }
+
+  const addIcon = document.querySelector(".profile__add-icon");
+  if (addIcon) {
+    addIcon.src = plusImage;
+  }
 
   // Setup card event delegation
   const cardList = document.querySelector(config.cardListSelector);
@@ -417,7 +408,6 @@ function init() {
   }
 
   // Setup Preview Modal
-  const previewModal = document.querySelector("#preview-modal");
   setupModalListeners(previewModal, null);
 }
 // Enable validation

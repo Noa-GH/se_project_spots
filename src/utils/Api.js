@@ -4,6 +4,7 @@ class Api {
     this._headers = headers;
   }
 
+  // Helper method to handle response
   checkResponse(res) {
     if (res.ok) {
       return res.json();
