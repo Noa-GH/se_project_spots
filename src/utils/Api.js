@@ -28,6 +28,7 @@ class Api {
       headers: this._headers,
     }).then(this.checkResponse);
   }
+
   editUserInfo({ name, about, avatar }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
@@ -66,6 +67,7 @@ class Api {
       headers: this._headers,
     }).then(this.checkResponse);
   }
+
   addLike(cardId, isLiked) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: isLiked ? "DELETE" : "PUT",
