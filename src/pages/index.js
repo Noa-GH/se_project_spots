@@ -9,6 +9,7 @@ import plusImage from "../images/Plus.svg";
 import { enableValidation, validationConfig } from "../scripts/validation.js";
 // Importing API
 import Api from "../utils/Api.js";
+// This is a test
 // ============================================
 // API CONFIGURATION
 // ============================================
